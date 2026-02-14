@@ -124,15 +124,15 @@ When tasks are assigned, they will follow this exact format:
     - Must print a requirements compliance summary to stdout
     - All physical constants and assumptions must be documented in code comments
 
-- [ ] **DES-003: Catalyst Preheat System Design**
+- [x] **DES-003: Catalyst Preheat System Design**
   - Traces to: REQ-014, REQ-027
   - Deliverable Type: both
   - Deliverable: Design document `design/docs/catalyst_preheat_system.md` and thermal script `design/scripts/catalyst_preheat_thermal.py`
   - Acceptance Criteria:
-    - [ ] Design heater system to achieve catalyst bed temperature 150°C - 300°C before first firing (REQ-014)
-    - [ ] Calculate heater power and thermal mass requirements
-    - [ ] Verify heater power ≤ 15W at 28V (REQ-027)
-    - [ ] Estimate preheat time to reach minimum temperature
+    - [x] Design heater system to achieve catalyst bed temperature 150°C - 300°C before first firing (REQ-014)
+    - [x] Calculate heater power and thermal mass requirements
+    - [x] Verify heater power ≤ 15W at 28V (REQ-027)
+    - [x] Estimate preheat time to reach minimum temperature
   - Constraints: Electrical interface 28V nominal, power ≤ 15W (REQ-027), propellant feed lines must not overheat
   - Context: DES-001 provides thermal environment context, no prior thermal design decisions
   - Script Requirements:
@@ -180,8 +180,8 @@ When tasks are assigned, they will follow this exact format:
 ## Design Task Queue Status
 
 - Total Tasks: 5
-- Completed: 2
+- Completed: 3
 - In Progress: 0
-- Pending: 3
+- Pending: 2
 
-*Last Updated: 2026-02-14T01:54:00.000Z*
+*Last Updated: 2026-02-14T02:05:00.000Z*

@@ -242,6 +242,42 @@ Independent verification by Agent 3 should confirm:
 
 ---
 
+## DEC-006: Preheat Time vs. Power Constraint Trade-off
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-014, REQ-027
+
+**Decision:**
+Accept 10.5-minute preheat time to reach 200°C design target while operating at the 15W power limit (REQ-027), rather than requiring 15.30W to achieve 10-minute preheat time.
+
+**Rationale:**
+The initial design target was a 10-minute preheat time, which would require 15.30W of heater power. This exceeds the 15W power constraint in REQ-027. The design decision was to:
+1. Operate at the 15W power limit (REQ-027 constraint)
+2. Accept a 10.5-minute preheat time to reach 200°C (5% increase from initial target)
+
+This trade-off is acceptable because:
+- The preheat operation occurs only once before the first firing (or infrequently after long coast periods)
+- 10.5 minutes is within the typical range for small monopropellant thrusters (5-15 minutes)
+- Heritage systems show similar preheat times: MR-103 (~8 min at 12W), CHT-1 (~10 min at 10W)
+- The 15W power constraint is a hard interface requirement that cannot be exceeded
+- The minimum temperature requirement (150°C) is reached in 7.3 minutes, providing margin for the design target
+
+**Alternatives Considered:**
+- Increase heater power to 15.30W: Would violate REQ-027 power constraint
+- Reduce thermal mass (smaller catalyst bed): Would reduce preheat time but may compromise catalyst lifetime and performance
+- Add thermal insulation: Could reduce heat losses by ~50% but adds complexity and mass
+- Reduce target preheat temperature to 175°C: Would reduce preheat time but may impact catalyst activation efficiency
+
+**Impact on Requirements:**
+- REQ-014: Design target of 200°C is within the required 150-300°C range. Preheat time of 10.5 minutes to reach 200°C is acceptable for startup before first firing.
+- REQ-027: Heater power is exactly at the 15W limit at 28V nominal, meeting the constraint.
+
+**Verification Implications:**
+Verification of REQ-014 should confirm that the catalyst bed reaches at least 150°C within the preheat time using the 15W heater at 28V nominal voltage.
+
+---
+
 **Document Status:** Active
 **Last Updated:** 2026-02-14
 **Phase:** BOOTSTRAP (Initial template creation)
