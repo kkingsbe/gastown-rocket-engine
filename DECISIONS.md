@@ -369,3 +369,76 @@ Independent verification should confirm:
 **Document Status:** Active
 **Last Updated:** 2026-02-14
 **Phase:** BOOTSTRAP (Initial template creation)
+
+---
+
+## DEC-009: Envelope Length Constraint Exception
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-002, REQ-012
+
+**Decision:**
+Document envelope length constraint exception for resolution by requirements owner. The overall thruster length (209.1 mm) exceeds the 150 mm requirement by 59.1 mm.
+
+**Rationale:**
+The length overage is driven by nozzle geometry required to achieve Isp ≥ 220 s (REQ-002). The nozzle length (125.6 mm) from DES-001 is sized for an expansion ratio of 100:1 to provide adequate Isp margin (86.4% above minimum requirement). The following resolution options were evaluated:
+
+1. **Bell nozzle optimization:** Reduces nozzle length by ~20% (125.6 mm → 100 mm), overall length becomes 183.5 mm, still exceeds 150 mm requirement by 33.5 mm
+2. **Increase half-angle to 20°:** Reduces nozzle length to ~94 mm, overall to 177.5 mm (still exceeds 150 mm, increases divergence losses by ~1.5%)
+3. **Reduce expansion ratio to 60:1:** Reduces nozzle length to ~75 mm, overall to ~158.5 mm (close to 150 mm, Isp reduced to 330 s with 50% margin loss)
+4. **Relax envelope to 210 mm:** Maintains performance, requires requirement change
+
+The decision was to document the constraint exception and defer resolution to the requirements owner, as this represents a fundamental trade-off between envelope size and performance (Isp margin).
+
+**Alternatives Considered:**
+- Bell nozzle optimization: Reduces length but still exceeds requirement, recommended if envelope relaxation is not feasible
+- Reduce expansion ratio: Significant Isp margin loss (86.4% → 50.0%), but achieves length close to requirement
+- Relax envelope: No performance impact, requires requirement change by Agent 1
+
+**Impact on Requirements:**
+- REQ-002: Maintaining current expansion ratio (100:1) preserves 86.4% Isp margin. Reducing expansion ratio to 60:1 would reduce Isp margin to 50.0% (still compliant)
+- REQ-012: Length requirement (150 mm) is not met. Resolution requires either envelope relaxation or aggressive trade-off
+
+**Verification Implications:**
+Independent verification should confirm:
+- Envelope dimensions from prior design tasks
+- Bell nozzle length reduction calculations (20% reduction from Rao's method)
+- Isp vs. expansion ratio trade-off analysis
+
+---
+
+## DEC-010: Mounting Flange Material Selection
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-011, REQ-013
+
+**Decision:**
+Select 316L stainless steel for mounting flange and associated hardware (injector, propellant inlet).
+
+**Rationale:**
+316L stainless steel was selected for the mounting flange, injector assembly, and propellant inlet based on the following factors:
+
+1. **Hydrazine compatibility:** 316L SS is compatible with hydrazine propellant and its decomposition products (NH3, N2, H2)
+2. **Space heritage:** 316L SS has extensive flight heritage in spacecraft propulsion systems
+3. **Mechanical properties:** Good strength (yield ~290 MPa at RT), adequate for mounting interface requirements
+4. **Manufacturability:** Excellent weldability for integration with molybdenum chamber
+5. **Thermal properties:** Provides thermal isolation between hot chamber (1127°C) and spacecraft structure
+6. **Mass impact:** Density (7,980 kg/m³) is acceptable within dry mass budget (0.5 kg)
+
+**Alternatives Considered:**
+- **Aluminum 6061:** Lower density (2,700 kg/m³) would reduce mass, but lower temperature rating and potential hydrazine compatibility concerns
+- **Titanium 6Al-4V:** Excellent strength-to-weight ratio but higher cost and more difficult to machine
+- **Inconel 625:** Higher temperature capability but higher density (8,440 kg/m³) and no thermal isolation benefit over 316L SS
+
+**Impact on Requirements:**
+- REQ-011: Contributes to dry mass budget but within limits. Flange mass (0.169 kg) + injector (0.038 kg) + inlet (0.012 kg) = 0.219 kg of total dry mass (0.280 kg)
+- REQ-013: Provides robust mounting interface with 316L SS flange for M6 bolts
+
+**Verification Implications:**
+Independent verification should confirm:
+- Material compatibility with hydrazine (ASTM G122 corrosion testing standards)
+- Thermal expansion coefficient match between 316L SS and molybdenum chamber
+- Weld integrity for flange-to-chamber joint
+- Fastener preload and stress analysis for M6 mounting bolts

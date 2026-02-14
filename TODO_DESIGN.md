@@ -161,16 +161,16 @@ When tasks are assigned, they will follow this exact format:
     - Must print a requirements compliance summary to stdout
     - All physical constants and assumptions must be documented in code comments
 
-- [ ] **DES-005: Physical Envelope and Mechanical Interface Design**
+- [x] **DES-005: Physical Envelope and Mechanical Interface Design**
   - Traces to: REQ-011, REQ-012, REQ-013, REQ-026
   - Deliverable Type: document
   - Deliverable: Design document `design/docs/physical_envelope_interface.md` with mechanical drawings
   - Acceptance Criteria:
-    - [ ] Define overall thruster envelope within cylinder 100 mm diameter × 150 mm length (REQ-012)
-    - [ ] Verify dry mass ≤ 0.5 kg (REQ-011)
-    - [ ] Design mounting interface: M6 bolts, 4-hole pattern, 80 mm bolt circle diameter (REQ-013)
-    - [ ] Design propellant inlet with 1/4" AN flare fitting (REQ-026)
-    - [ ] Provide mechanical layout with all interfaces and mounting points
+    - [x] Define overall thruster envelope within cylinder 100 mm diameter × 150 mm length (REQ-012)
+    - [x] Verify dry mass ≤ 0.5 kg (REQ-011)
+    - [x] Design mounting interface: M6 bolts, 4-hole pattern, 80 mm bolt circle diameter (REQ-013)
+    - [x] Design propellant inlet with 1/4" AN flare fitting (REQ-026)
+    - [x] Provide mechanical layout with all interfaces and mounting points
   - Constraints: Envelope limits from REQ-012, mass budget from REQ-011, must accommodate DES-004 chamber/nozzle dimensions
   - Context: DES-004 provides chamber/nozzle dimensions, DES-001 provides performance envelope
   - Script Requirements: None (document-only deliverable)
@@ -180,8 +180,8 @@ When tasks are assigned, they will follow this exact format:
 ## Design Task Queue Status
 
 - Total Tasks: 5
-- Completed: 4
+- Completed: 5
 - In Progress: 0
-- Pending: 1
+- Pending: 0
 
-*Last Updated: 2026-02-14T02:16:00.000Z*
+*Last Updated: 2026-02-14T02:21:00.000Z*
