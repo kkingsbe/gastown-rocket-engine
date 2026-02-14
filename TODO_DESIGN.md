@@ -88,15 +88,15 @@ When tasks are assigned, they will follow this exact format:
 
 ## Design Tasks
 
-- [ ] **DES-001: Thruster Performance Sizing**
+- [x] **DES-001: Thruster Performance Sizing**
   - Traces to: REQ-001, REQ-002
   - Deliverable Type: both
   - Deliverable: Design document `design/docs/thruster_performance_sizing.md` and sizing script `design/scripts/thruster_performance_sizing.py`
   - Acceptance Criteria:
-    - [ ] Calculate required chamber pressure and mass flow rate to achieve 1.0 N ± 0.05 N thrust (REQ-001)
-    - [ ] Calculate nozzle expansion ratio and throat dimensions to achieve Isp ≥ 220 s in vacuum (REQ-002)
-    - [ ] Document all physical constants, assumptions, and calculations
-    - [ ] Output JSON file contains: chamber_pressure_MPa, mass_flow_rate_kg_s, throat_area_m2, expansion_ratio, thrust_N, specific_impulse_s
+    - [x] Calculate required chamber pressure and mass flow rate to achieve 1.0 N ± 0.05 N thrust (REQ-001)
+    - [x] Calculate nozzle expansion ratio and throat dimensions to achieve Isp ≥ 220 s in vacuum (REQ-002)
+    - [x] Document all physical constants, assumptions, and calculations
+    - [x] Output JSON file contains: chamber_pressure_MPa, mass_flow_rate_kg_s, throat_area_m2, expansion_ratio, thrust_N, specific_impulse_s
   - Constraints: Feed pressure range 0.15-0.30 MPa (REQ-009), use standard gravitational acceleration g0 = 9.80665 m/s²
   - Context: No prior design decisions exist
   - Script Requirements:

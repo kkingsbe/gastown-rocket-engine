@@ -6,11 +6,17 @@
 
  │                                                                            │
 
- │ The commit was successful. Let me verify the commit with git log to        │
+ │ Now I need to commit the changes with the convention: des(design):         │
 
- │ confirm everything is correct before completing the task.                  │
+ │ <description>. Let me commit all the changes.                              │
 
  └────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+[2K[1A[2K[G > Now let me commit the changes with the convention.
 
 
 

@@ -25,3 +25,10 @@ schedule = "0 */7 * * * *"
 readonly = false
 timeout = "30m"
 prompt_file = "prompts/VERIFICATION_VALIDATION.md"
+
+[[agent]]
+name = "summarizer"
+schedule = "0 0 * * * *"
+readonly = false
+timeout = "30m"
+prompt_file = "prompts/SUMMARIZER.md"

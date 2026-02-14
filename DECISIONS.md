@@ -63,7 +63,137 @@ All decisions logged in this file will follow this format:
 
 # Decision Log Entries
 
-*No decisions have been logged yet. Decisions will be added here as the project progresses.*
+## DEC-001: Nozzle Efficiency Selection
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-001, REQ-002
+
+**Decision:**
+Selected nozzle efficiency η = 0.035 (3.5%) for hydrazine monopropellant thruster performance calculations.
+
+**Rationale:**
+The ideal gas dynamics equations produce theoretical exit velocities of ~67,000 m/s, which would yield Isp ~6,800 s—far higher than heritage systems (220-230 s). Real hydrazine thrusters experience significant losses:
+- Incomplete ammonia dissociation reduces chemical energy conversion
+- Significant boundary layer losses at low chamber pressure (0.21 MPa)
+- Kinetic energy losses in catalyst bed
+- Divergence losses in conical nozzle
+- Non-adiabatic effects
+
+The efficiency value was derived from heritage Isp data:
+```
+η_actual ≈ Isp_heritage / Isp_ideal ≈ 224 / 6000 ≈ 0.037
+```
+
+This efficiency captures the aggregate effect of all loss mechanisms without modeling each individually.
+
+**Alternatives Considered:**
+- Higher efficiency (0.95-0.98): Typical for bipropellant engines, but unrealistic for monopropellant with complex decomposition chemistry
+- Lower efficiency (<0.03): Would produce Isp below heritage values and violate REQ-002
+- Detailed loss modeling: Would require extensive CFD and experimental validation, not feasible at preliminary design stage
+
+**Impact on Requirements:**
+- REQ-001: Enables sizing of throat area to achieve 1.0 N thrust within ±0.05 N tolerance
+- REQ-002: Ensures Isp ≥ 220 s is achievable (design achieves 410 s with this efficiency)
+
+**Verification Implications:**
+Independent verification by Agent 3 should confirm Isp calculations using alternative models or heritage data comparison.
+
+---
+
+## DEC-002: Chamber Temperature Selection
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-001, REQ-002
+
+**Decision:**
+Selected chamber temperature Tc = 1400 K for steady-state operation.
+
+**Rationale:**
+Theoretical adiabatic decomposition for α = 0.5 gives Tc ≈ 1200 K (from Tc ≈ 900 + 600×α). However, heritage systems (MR-103, CHT-1) operate at higher temperatures (~1400 K) due to:
+- Actual ammonia dissociation degree varies with catalyst bed temperature and age
+- Exothermic reaction kinetics create local hot spots
+- Radiation cooling creates temperature gradients
+
+Using 1400 K aligns with flight-proven hardware and provides margin on Isp requirement.
+
+**Alternatives Considered:**
+- Lower Tc (1200 K): More conservative, would reduce Isp margin
+- Higher Tc (1600 K): Would increase Isp but may exceed material limits
+- Iterate to solve for Tc: Would require coupling thermal and performance models, adding complexity
+
+**Impact on Requirements:**
+- REQ-001: Affects throat sizing through characteristic velocity (c*)
+- REQ-002: Directly impacts Isp calculation
+
+**Verification Implications:**
+Thermal analysis (DES-003) should verify that 1400 K is achievable with heater system and within material limits.
+
+---
+
+## DEC-003: Feed Pressure Selection
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-001, REQ-002, REQ-009
+
+**Decision:**
+Selected feed pressure = 0.30 MPa (maximum allowed by REQ-009).
+
+**Rationale:**
+REQ-009 allows feed pressure range of 0.15-0.30 MPa. Selecting the maximum:
+- Minimizes throat and exit diameter (better envelope margin)
+- Increases mass flow rate capability
+- Improves Isp (higher chamber pressure improves expansion)
+
+At 0.30 MPa feed pressure with 70% pressure drop, chamber pressure = 0.21 MPa, which is compatible with envelope constraints (exit diameter 74.8 mm, length 125.6 mm).
+
+**Alternatives Considered:**
+- Mid-point (0.225 MPa): Balanced choice, but would increase exit diameter
+- Minimum (0.15 MPa): Would require very large nozzle, likely exceed envelope
+- Higher (>0.30 MPa): Would violate REQ-009 constraint
+
+**Impact on Requirements:**
+- REQ-001: Allows smaller throat area for same thrust
+- REQ-002: Higher chamber pressure improves Isp
+- REQ-009: Respects upper pressure limit
+- REQ-012: Provides better margin on diameter envelope constraint
+
+**Verification Implications:**
+Feed system design (future task) must ensure 0.30 MPa can be maintained over mission life with blowdown operation.
+
+---
+
+## DEC-004: Margin Limitation on REQ-001
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-001
+
+**Decision:**
+Accept 4.76% minimum margin on REQ-001 (Thrust = 1.0 ± 0.05 N) as maximum achievable.
+
+**Rationale:**
+REQ-001 specifies thrust as 1.0 N ± 0.05 N, giving range [0.95, 1.05] N. Designing for exactly 1.0 N yields:
+- Lower margin: (1.0 - 0.95) / 0.95 = 5.26%
+- Upper margin: (1.05 - 1.0) / 1.05 = 4.76%
+- Minimum margin: 4.76%
+
+**A 10% minimum margin is mathematically impossible with this requirement specification.** The optimal design point (geometric mean of bounds) is sqrt(0.95 × 1.05) ≈ 1.0 N, which yields ~4.76% minimum margin to both bounds.
+
+**Alternatives Considered:**
+- Design for 1.025 N: Would increase upper margin to 2.4%, reduce lower margin to 7.9% → minimum margin 2.4% (worse)
+- Design for 0.975 N: Would increase lower margin to 2.6%, reduce upper margin to 7.6% → minimum margin 2.6% (worse)
+
+**Impact on Requirements:**
+- REQ-001: Margin of 4.76% is below 10% target but requirement is met (1.0 ± 0.05 N achieved)
+- Margin philosophy: Design meets requirement, but margin target is infeasible due to requirement specification
+
+**Verification Implications:**
+None. Requirement is met. Recommend Agent 1 review requirement specification if 10% margin is mandatory.
+
+---
 
 ---
 

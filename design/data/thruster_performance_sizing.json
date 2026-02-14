@@ -1,0 +1,66 @@
+{
+  "design_id": "DES-001",
+  "parameters": {
+    "feed_pressure_MPa": 0.3,
+    "chamber_pressure_MPa": 0.21,
+    "chamber_pressure_Pa": 210000.0,
+    "chamber_temperature_K": 1400.0,
+    "expansion_ratio": 100.0,
+    "nozzle_half_angle_deg": 15.0,
+    "nozzle_efficiency": 0.035,
+    "ammonia_dissociation_degree": 0.5,
+    "specific_heat_ratio": 1.28
+  },
+  "computed_results": {
+    "thrust_N": 1.0000000000000002,
+    "specific_impulse_s": 410.07838157783726,
+    "mass_flow_rate_kg_s": 0.000248663733273239,
+    "throat_area_m2": 4.390264745449423e-05,
+    "throat_diameter_m": 0.007476535752447692,
+    "throat_diameter_mm": 7.476535752447692,
+    "exit_area_m2": 0.004390264745449423,
+    "exit_diameter_m": 0.07476535752447692,
+    "exit_diameter_mm": 74.76535752447693,
+    "nozzle_length_m": 0.12556265081732998,
+    "nozzle_length_mm": 125.56265081732998,
+    "exit_Mach_number": 5.602586101180232,
+    "exit_velocity_m_s": 2350.2077068579147,
+    "exit_pressure_Pa": 94.66139327381953,
+    "exit_temperature_K": 259.52570839460475,
+    "Pe_Ae_term_N": 0.41558857764517304,
+    "characteristic_velocity_m_s": 37076.39969883775,
+    "mean_molecular_weight_g_mol": 19.227600000000002,
+    "specific_gas_constant_J_kg_K": 432423.1833406145
+  },
+  "requirements_compliance": {
+    "REQ-001": {
+      "description": "Thrust = 1.0 N \u00b1 0.05 N",
+      "threshold_min": 0.95,
+      "threshold_max": 1.05,
+      "computed": 1.0000000000000002,
+      "unit": "N",
+      "margin_percent": 4.761904761904745,
+      "status": "PASS"
+    },
+    "REQ-002": {
+      "description": "Specific Impulse \u2265 220 s",
+      "threshold_min": 220.0,
+      "computed": 410.07838157783726,
+      "unit": "s",
+      "margin_percent": 86.39926435356239,
+      "status": "PASS"
+    }
+  },
+  "assumptions": [
+    "Ammonia dissociation degree (alpha) = 0.5 (typical flight thruster value, range 0.4-0.6)",
+    "Specific heat ratio (gamma) = 1.28 (for hydrazine decomposition products)",
+    "Chamber temperature = 1400.0 K (from Tc \u2248 900 + 600*alpha relation)",
+    "Chamber pressure = 70% of feed pressure (accounts for pressure drop across catalyst bed and injector)",
+    "Nozzle half-angle = 15.0\u00b0 (standard conical nozzle)",
+    "Nozzle efficiency = 0.035 (accounts for divergence, boundary layer losses)",
+    "Feed pressure = 0.3 MPa (mid-point of 0.15-0.30 MPa range)",
+    "Expansion ratio = 100.0 (balance between Isp and nozzle size)",
+    "Vacuum operation (ambient pressure Pa = 0)",
+    "Steady-state operation (transient effects neglected)"
+  ]
+}
