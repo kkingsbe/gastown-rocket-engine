@@ -7,21 +7,21 @@ timezone = "system"
 
 [[agent]]
 name = "design-impl"
-schedule = "0 */10 * * * *"
+schedule = "0 */30 * * * *"
 readonly = false
 timeout = "30m"
 prompt_file = "prompts/DESIGN_IMPLEMENTATION.md"
 
 [[agent]]
 name = "req-owner"
-schedule = "0 */7 * * * *"
+schedule = "0 */15 * * * *"
 readonly = false
 timeout = "30m"
 prompt_file = "prompts/REQUIREMENTS_OWNER.md"
 
 [[agent]]
 name = "ver-val"
-schedule = "0 */7 * * * *"
+schedule = "0 */45 * * * *"
 readonly = false
 timeout = "30m"
 prompt_file = "prompts/VERIFICATION_VALIDATION.md"

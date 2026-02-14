@@ -79,7 +79,7 @@ Each verification task follows this format:
     - Output raw numerical results to `verification/data/`
     - Compare your results against Agent 2's claimed values — flag deltas > 5%
 
-- [ ] **VER-002: Verify Propellant Mass Budget**
+- [x] **VER-002: Verify Propellant Mass Budget**
   - Traces to: REQ-005, REQ-008
   - Design Artifact: DES-002 (⚠️ BLOCKED_BY: TODO_DESIGN.md > "DES-002")
   - Verification Method: Analysis
@@ -93,6 +93,7 @@ Each verification task follows this format:
     7. Document all assumptions: average impulse bit, firing cycle count, Isp degradation allowance
   - Required Evidence: Verification report `verification/reports/VER-002_propellant_budget_verification.md` with calculations and final mass budget breakdown
   - Simulation Requirements: None (Analysis method, not Simulation)
+  - Status: **FAIL** - Conservative case (Isp=220s) exceeds 25 kg budget by 1.93%. Nominal case (Isp=410.08s) passes with 82.8% margin. Finding logged and Agent 1 notified.
 
 - [ ] **VER-003: Verify Catalyst Preheat Temperature**
   - Traces to: REQ-014, REQ-027

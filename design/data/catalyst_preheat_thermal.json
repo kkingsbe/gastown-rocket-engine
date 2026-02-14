@@ -1,0 +1,83 @@
+{
+  "design_id": "DES-003",
+  "parameters": {
+    "throat_diameter_m": 0.007476535752447692,
+    "chamber_diameter_m": 0.022429607257343075,
+    "bed_length_m": 0.04485921451468615,
+    "bed_length_diameter_ratio": 2.0,
+    "wall_thickness_m": 0.001,
+    "catalyst_mass_kg": 0.042539866846353996,
+    "chamber_wall_mass_kg": 0.02786820476192491,
+    "total_thermal_mass_kg": 0.0704080716082789,
+    "initial_temperature_C": 20.0,
+    "target_preheat_temperature_C": 200.0,
+    "target_preheat_time_s": 600.0
+  },
+  "material_properties": {
+    "catalyst_specific_heat_J_kg_K": 800.0,
+    "catalyst_density_kg_m3": 2500.0,
+    "catalyst_porosity": 0.4,
+    "chamber_specific_heat_J_kg_K": 435.0,
+    "chamber_density_kg_m3": 8440.0,
+    "epsilon_chamber": 0.3
+  },
+  "thermal_analysis": {
+    "temperature_rise_K": 180.0,
+    "heat_required_J": 8307.821258733695,
+    "heat_losses_J": 869.8445725547231,
+    "heat_required_catalyst_J": 6125.740825874975,
+    "heat_required_chamber_J": 2182.0804328587205
+  },
+  "heater_design": {
+    "nominal_voltage_V": 28.0,
+    "power_limit_W": 15.0,
+    "heater_power_W": 15.0,
+    "heater_resistance_Ohm": 52.266666666666666,
+    "heater_current_A": 0.5357142857142857,
+    "initial_preheat_time_target_s": 600.0,
+    "actual_preheat_time_to_design_temp_s": 630.0
+  },
+  "preheat_performance_at_limit": {
+    "time_to_min_temperature_s": 440.0,
+    "time_to_design_temperature_s": 630.0,
+    "time_to_max_temperature_s": 1160.0
+  },
+  "requirements_compliance": {
+    "REQ-014": {
+      "description": "Catalyst bed preheat 150-300\u00b0C before first firing",
+      "threshold_min_C": 150.0,
+      "threshold_max_C": 300.0,
+      "design_target_C": 200.0,
+      "within_range": true,
+      "status": "PASS"
+    },
+    "REQ-027": {
+      "description": "Heater power \u2264 15W at 28V",
+      "threshold_power_W": 15.0,
+      "threshold_voltage_V": 28.0,
+      "heater_power_W": 15.0,
+      "within_power_limit": true,
+      "status": "PASS"
+    }
+  },
+  "assumptions": [
+    "Chamber diameter = 3x throat diameter (typical for hydrazine thrusters)",
+    "Bed length/diameter ratio = 2.0 (mid-range of 1.5-3.0 typical)",
+    "Catalyst bed loading based on Shell 405 (Iridium on alumina support)",
+    "Wall thickness = 1.0 mm (minimum manufacturable for small thrusters)",
+    "Natural convection in spacecraft: h = 1.0 W/(m^2*K) (conservative)",
+    "Chamber external emissivity = 0.3 (polished or coated surface)",
+    "Initial temperature = 20\u00b0C (typical spacecraft interior)",
+    "Target preheat time = 600 seconds (10 minutes, typical for small thrusters)",
+    "Thermal losses dominated by radiation (convection negligible in space)",
+    "Heater power constant during preheat (simplified model)",
+    "No heat loss to feed lines during preheat (isolated for worst-case analysis)"
+  ],
+  "sources": [
+    "Shell 405 catalyst properties: NASA CR-182202",
+    "Inconel 625 properties: NASA materials database",
+    "Thermal properties: Spacecraft thermal control handbook",
+    "Catalyst bed sizing: CONTEXT.md Section 4 (Catalyst)",
+    "Physical constants: NIST, CONTEXT.md Section 6"
+  ]
+}

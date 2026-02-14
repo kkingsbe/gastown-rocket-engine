@@ -6,9 +6,31 @@
 
  │                                                                            │
 
- │ Now let me read REQ_REGISTER.md to understand REQ-014 and REQ-027.         │
+ │ Now I need to read the design data from design/data/. Let me look at what  │
+
+ │ design data files exist.                                                   │
 
  └────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+[2K[1A[2K[G
+
+ 💾 Checkpoint Saved (96707d8234b8c9cbd6a168137f0b35b8c4a73fec)
+
+
+
+
+
+[2K[1A[2K[G
+
+ 📝 Read File
+
+   design/data/propellant_budget.json
+
+   Reason:  (max 500 lines)
 
 
 

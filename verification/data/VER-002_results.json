@@ -1,0 +1,75 @@
+{
+  "verification_id": "VER-002",
+  "verdict": "FAIL",
+  "parameters": {
+    "total_impulse_requirement_Ns": 50000.0,
+    "propellant_mass_budget_kg": 25.0,
+    "minimum_isp_s": 220.0,
+    "design_isp_s": 410.07838157783726,
+    "margin_pct": 10.0
+  },
+  "independent_analysis": {
+    "propellant_mass_nominal_isp_kg": 13.676505330028144,
+    "propellant_mass_conservative_isp_kg": 25.49290532444821,
+    "total_impulse_nominal_Ns": 50000.0,
+    "firing_time_hours": 13.888888888888886,
+    "impulse_per_cycle_Ns": 1.0
+  },
+  "requirements_compliance": {
+    "REQ-005": {
+      "description": "Total Impulse >= 50,000 N\u00b7s",
+      "threshold": 50000.0,
+      "calculated": 50000.0,
+      "unit": "N\u00b7s",
+      "margin_percent": 0.0,
+      "status": "PASS"
+    },
+    "REQ-008": {
+      "description": "Propellant Mass <= 25 kg",
+      "threshold": 25.0,
+      "calculated_nominal": 13.676505330028144,
+      "calculated_conservative": 25.49290532444821,
+      "unit": "kg",
+      "margin_nominal_pct": 82.79523457728624,
+      "margin_conservative_pct": -1.9335000000000102,
+      "status": "FAIL"
+    },
+    "REQ-020": {
+      "description": "Firing Cycles >= 50,000",
+      "threshold": 50000,
+      "calculated": 50000,
+      "unit": "cycles",
+      "status": "PASS"
+    },
+    "REQ-021": {
+      "description": "Catalyst Lifetime >= 100 hours",
+      "threshold": 100.0,
+      "calculated": 13.888888888888886,
+      "unit": "hours",
+      "margin_percent": 620.0000000000002,
+      "status": "PASS"
+    }
+  },
+  "agent2_comparison": {
+    "agent2_nominal_mass_kg": 12.433137594834282,
+    "agent3_nominal_mass_kg": 12.433186663661948,
+    "delta_nominal_kg": 4.9068827665976755e-05,
+    "delta_nominal_pct": 0.00039466166357206463,
+    "agreement_nominal": true,
+    "agent2_margin_mass_kg": 13.676451354317711,
+    "agent3_margin_mass_kg": 13.676505330028144,
+    "delta_margin_kg": 5.3975710432752066e-05,
+    "delta_margin_pct": 0.0003946616635733634,
+    "agreement_margin": true
+  },
+  "assumptions": [
+    "Total impulse requirement of 50,000 N\u00b7s from REQ-005",
+    "Design Isp of 410.08 s from DES-001 for nominal case",
+    "Conservative Isp of 220.0 s from REQ-002 minimum",
+    "Uncertainty margin of 10.0% for mission uncertainty",
+    "Mass flow rate and thrust from DES-001 for time calculations",
+    "50,000 firing cycles from REQ-020",
+    "Catalyst lifetime requirement of 100 hours from REQ-021",
+    "Analysis uses fundamental rocket equation: I_total = m_prop * Isp * g0"
+  ]
+}

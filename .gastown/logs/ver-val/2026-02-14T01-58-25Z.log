@@ -6,9 +6,31 @@
 
  │                                                                            │
 
- │ Now let me read REQ_REGISTER.md to understand REQ-014 and REQ-027.         │
+ │ Now I also need to check the thruster performance data to get more         │
+
+ │ context. Let me read that file.                                            │
 
  └────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+[2K[1A[2K[G
+
+ 💾 Checkpoint Saved (fa6afa8c7789b41c554fd8aaf2c6c6478320c37f)
+
+
+
+
+
+[2K[1A[2K[G
+
+ 📝 Read File
+
+   design/data/thruster_performance_sizing.json
+
+   Reason:  (max 500 lines)
 
 
 
