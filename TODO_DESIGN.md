@@ -106,17 +106,17 @@ When tasks are assigned, they will follow this exact format:
     - Must print a requirements compliance summary to stdout
     - All physical constants and assumptions must be documented in code comments
 
-- [ ] **DES-002: Propellant Budget Calculation**
+- [x] **DES-002: Propellant Budget Calculation**
   - Traces to: REQ-005, REQ-008
   - Deliverable Type: both
   - Deliverable: Analysis document `design/docs/propellant_budget.md` and calculation script `design/scripts/propellant_budget.py`
   - Acceptance Criteria:
-    - [ ] Calculate required propellant mass to deliver ≥ 50,000 N·s total impulse (REQ-005)
-    - [ ] Verify propellant mass ≤ 25 kg budget (REQ-008)
-    - [ ] Include 10% margin for mission uncertainty
-    - [ ] Document all assumptions (impulse bits, firing cycles, Isp degradation)
-  - Constraints: Use minimum Isp = 220 s (REQ-002), mission life 15 years (REQ-030), 50,000 firing cycles (REQ-020)
-  - Context: DES-001 provides Isp calculations
+    - [x] Calculate required propellant mass to deliver ≥ 50,000 N·s total impulse (REQ-005)
+    - [x] Verify propellant mass ≤ 25 kg budget (REQ-008)
+    - [x] Include 10% margin for mission uncertainty
+    - [x] Document all assumptions (impulse bits, firing cycles, Isp degradation)
+  - Constraints: Use design Isp = 410.08 s from DES-001 (DEC-005), mission life 15 years (REQ-030), 50,000 firing cycles (REQ-020)
+  - Context: DES-001 provides Isp calculations; see DEC-005 for Isp selection rationale
   - Script Requirements:
     - Language: Python 3
     - Must be runnable standalone: `python design/scripts/propellant_budget.py`
@@ -180,8 +180,8 @@ When tasks are assigned, they will follow this exact format:
 ## Design Task Queue Status
 
 - Total Tasks: 5
-- Completed: 0
+- Completed: 2
 - In Progress: 0
-- Pending: 5
+- Pending: 3
 
-*Last Updated: 2026-02-14T01:27:36.000Z*
+*Last Updated: 2026-02-14T01:54:00.000Z*

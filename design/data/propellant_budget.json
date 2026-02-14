@@ -1,0 +1,93 @@
+{
+  "design_id": "DES-002",
+  "parameters": {
+    "total_impulse_requirement_Ns": 50000.0,
+    "propellant_mass_budget_kg": 25.0,
+    "minimum_isp_s": 220.0,
+    "design_isp_s": 410.08,
+    "mass_flow_rate_kg_s": 0.000249,
+    "nominal_thrust_N": 1.0,
+    "firing_cycles": 50000,
+    "uncertainty_margin_pct": 10.0,
+    "standard_gravity_m_s2": 9.80665,
+    "hydrazine_density_kg_m3": 1004.0,
+    "catalyst_lifetime_hours": 100.0
+  },
+  "computed_results": {
+    "nominal_propellant_mass_kg": 12.433137594834282,
+    "conservative_propellant_mass_min_isp_kg": 23.175368476771098,
+    "margin_amount_kg": 1.2433137594834296,
+    "propellant_mass_with_margin_kg": 13.676451354317711,
+    "propellant_volume_m3": 0.013621963500316445,
+    "propellant_volume_liters": 13.621963500316445,
+    "total_firing_time_seconds": 54925.507447059084,
+    "total_firing_time_hours": 15.257085401960857,
+    "impulse_per_cycle_Ns": 1.0,
+    "minimum_pulse_time_ms": 1000.0,
+    "minimum_pulse_time_s": 1.0,
+    "achievable_total_impulse_nominal_Ns": 50000.00000000001,
+    "achievable_total_impulse_with_margin_Ns": 55000.000000000015,
+    "budget_utilization_pct": 54.705805417270845,
+    "budget_remaining_kg": 11.323548645682289
+  },
+  "requirements_compliance": {
+    "REQ-002": {
+      "description": "Specific Impulse \u2265 220 s",
+      "threshold_min": 220.0,
+      "computed": 410.08,
+      "unit": "s",
+      "margin_percent": 86.39999999999999,
+      "status": "PASS"
+    },
+    "REQ-005": {
+      "description": "Total Impulse \u2265 50,000 N\u00b7s",
+      "threshold_min": 50000.0,
+      "computed": 50000.00000000001,
+      "unit": "N\u00b7s",
+      "margin_percent": 2.220446049250313e-14,
+      "status": "PASS"
+    },
+    "REQ-008": {
+      "description": "Propellant Mass \u2264 25 kg",
+      "threshold_max": 25.0,
+      "computed": 13.676451354317711,
+      "unit": "kg",
+      "margin_percent": 45.294194582729155,
+      "status": "PASS"
+    },
+    "REQ-020": {
+      "description": "\u2265 50,000 Firing Cycles",
+      "threshold_min": 50000,
+      "computed": 50000,
+      "unit": "cycles",
+      "margin_percent": 0.0,
+      "status": "PASS"
+    },
+    "REQ-021": {
+      "description": "Catalyst Lifetime \u2265 100 hours",
+      "threshold_min": 100.0,
+      "computed": 15.257085401960857,
+      "unit": "hours",
+      "margin_percent": 84.74291459803914,
+      "status": "PASS"
+    }
+  },
+  "assumptions": [
+    "Design Isp = 410.08 s from DES-001 (actual expected performance)",
+    "Minimum Isp = 220.0 s (conservative baseline for comparison, from REQ-002)",
+    "Mass flow rate = 0.000249000 kg/s from DES-001",
+    "Nominal thrust = 1.0 N from DES-001",
+    "Total impulse requirement = 50,000 N\u00b7s (REQ-005)",
+    "Firing cycles = 50,000 cycles (REQ-020)",
+    "Uncertainty margin = 10.0% for mission uncertainty",
+    "Hydrazine liquid density = 1004.0 kg/m\u00b3 at 25\u00b0C (from CONTEXT.md)",
+    "Standard gravity g0 = 9.80665 m/s\u00b2 (exact SI constant)",
+    "Mission life = 15 years (REQ-030)",
+    "Catalyst lifetime = 100.0 hours (REQ-021)",
+    "Minimum impulse bit = 0.01 N\u00b7s (REQ-004) - satisfied with 1.0000 N\u00b7s per cycle",
+    "Uncertainty margin accounts for: Isp degradation over mission life, residual propellant,",
+    "  pressurization system losses, and potential leakage",
+    "Isp degradation not explicitly modeled - margin accounts for performance degradation",
+    "Tank pressurization gas mass not included in this propellant budget (separate system)"
+  ]
+}
