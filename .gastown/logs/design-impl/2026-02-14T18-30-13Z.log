@@ -1,0 +1,128 @@
+[2K[1A[2K[G
+
+ ┌────────────────────────────────────────────────────────────────────────────┐
+
+ │ 💭 Reasoning                                                               │
+
+ │                                                                            │
+
+ │ The user has provided a task specification document for Agent 2 (Design &  │
+
+ │ Implementation Engineer). This document outlines the role,                 │
+
+ │ responsibilities, and workflow for this agent in a multi-agent system for  │
+
+ │ engineering design.                                                        │
+
+ │                                                                            │
+
+ │ Looking at the environment details, I can see that:                        │
+
+ │                                                                            │
+
+ │                                                                            │
+
+ │     * There are already .agent1_done, .agent2_done, .agent3_done, and      │
+
+ │ .sprint_complete files present                                             │
+
+ │     * The workspace contains a complete project with design, verification, │
+
+ │  and communication artifacts                                               │
+
+ │     * All the standard directories and files mentioned in the              │
+
+ │ specification exist true                                                   │
+
+ │                                                                            │
+
+ │ This appears to be a demonstration or reference document showing how Agent │
+
+ │  2 should operate. The user hasn't asked me to actually execute any        │
+
+ │ specific task related to this specification - they've just shared the      │
+
+ │ documentation.                                                             │
+
+ │                                                                            │
+
+ │ As an Orchestrator mode AI, I should:                                      │
+
+ │                                                                            │
+
+ │                                                                            │
+
+ │     * Understand what the user is asking for                               │
+
+ │     * Determine if this is a task I need to execute, or if they're just    │
+
+ │ sharing documentation                                                      │
+
+ │     * If it's a task, break it down into appropriate subtasks for          │
+
+ │ different modes true                                                       │
+
+ │                                                                            │
+
+ │ Since the user hasn't given me a specific instruction about what to do     │
+
+ │ with this document, I should ask for clarification about what they want me │
+
+ │  to do with this specification.                                            │
+
+ └────────────────────────────────────────────────────────────────────────────┘
+
+
+
+  I can see you've shared the Agent 2 Design & Implementation Engineer
+
+  specification document. This appears to be a comprehensive workflow guide for a
+
+   design engineering agent in a multi-agent system.
+
+
+
+  Looking at the workspace, I can see this is an active project with all three
+
+  agent markers (.agent1_done, .agent2_done, .agent3_done) and a .sprint_complete
+
+   file, indicating the system has already completed a full cycle.
+
+
+
+  What would you like me to help you with regarding this specification?
+
+
+
+  Some options:
+
+
+
+      1. Review and analyze the Agent 2 specification and provide feedback on its
+
+   design
+
+      2. Create a new task using this Agent 2 specification to work on a new
+
+  engineering design project
+
+      3. Set up a new multi-agent workflow based on this three-agent system
+
+  (Requirements Owner, Design Engineer, Verification Engineer)
+
+      4. Generate documentation explaining how this multi-agent system works
+
+      5. Something else - please let me know your specific goal
+
+
+
+  Please clarify what you'd like to accomplish so I can delegate the appropriate
+
+  work to the right specialized modes.
+
+
+
+
+
+
+

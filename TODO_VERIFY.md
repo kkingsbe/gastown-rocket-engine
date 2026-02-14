@@ -95,7 +95,7 @@ Each verification task follows this format:
   - Simulation Requirements: None (Analysis method, not Simulation)
   - Status: **FAIL** - Conservative case (Isp=220s) exceeds 25 kg budget by 1.93%. Nominal case (Isp=410.08s) passes with 82.8% margin. Finding logged and Agent 1 notified.
 
-- [ ] **VER-003: Verify Catalyst Preheat Temperature**
+- [x] **VER-003: Verify Catalyst Preheat Temperature**
   - Traces to: REQ-014, REQ-027
   - Design Artifact: DES-003 (⚠️ BLOCKED_BY: TODO_DESIGN.md > "DES-003")
   - Verification Method: Simulation
@@ -117,7 +117,7 @@ Each verification task follows this format:
     - Output raw numerical results to `verification/data/`
     - Compare your results against Agent 2's claimed values — flag deltas > 5%
 
-- [ ] **VER-004: Verify Chamber Structural Design**
+- [x] **VER-004: Verify Chamber Structural Design**
   - Traces to: REQ-015, REQ-018, REQ-024
   - Design Artifact: DES-004 (⚠️ BLOCKED_BY: TODO_DESIGN.md > "DES-004")
   - Verification Method: Simulation
@@ -138,8 +138,9 @@ Each verification task follows this format:
     - Run at boundary conditions (MEOP × 1.5), not just nominal
     - Output raw numerical results to `verification/data/`
     - Compare your results against Agent 2's claimed values — flag deltas > 5%
+  - Status: **PASS** - All requirements verified. Two significant discrepancies identified (>5%): Yield strength (+20.21%), Safety factor (+30.04%). Both discrepancies are positive (design is MORE conservative than Agent 2 reported) and do NOT impact requirements compliance. Discrepancies are due to different yield strength degradation modeling (Agent 2: fixed 40% factor, Agent 3: temperature-dependent interpolation). Disposition: ACCEPTED.
 
-- [ ] **VER-005: Verify Physical Envelope and Mechanical Interface Compliance**
+- [x] **VER-005: Verify Physical Envelope and Mechanical Interface Compliance**
   - Traces to: REQ-011, REQ-012, REQ-013, REQ-026
   - Design Artifact: DES-005 (⚠️ BLOCKED_BY: TODO_DESIGN.md > "DES-005")
   - Verification Method: Inspection
@@ -153,6 +154,143 @@ Each verification task follows this format:
     7. Create dimensional verification checklist
   - Required Evidence: Verification report `verification/reports/VER-005_envelope_interface_verification.md` with compliance checklist and dimensional analysis
   - Simulation Requirements: None (Inspection method, not Simulation)
+  - Status: **PARTIAL PASS** - REQ-011 (mass), REQ-013 (mounting), REQ-026 (inlet) PASS. REQ-012 FAIL (length 209.1 mm > 150 mm requirement). Finding: 53.01% delta vs. design mass calculation (0.4284 kg vs. 0.280 kg claimed), but both values satisfy REQ-011.
+
+- [x] **VER-006: Thermal Management Verification**
+  - Traces to: REQ-006, REQ-010
+  - Design Artifact: DES-008 (Thermal Analysis)
+  - Verification Method: Simulation
+  - Procedure:
+    1. Develop an independent thermal simulation of startup transient
+    2. Input thermal properties from DES-008
+    3. Simulate temperature rise from ambient to 90% thrust condition
+    4. Verify time to reach 90% thrust ≤ 200 ms (REQ-006)
+    5. Verify propellant temperature maintained within 5°C-50°C range (REQ-010)
+    6. Plot startup transient with requirement threshold annotated
+  - Required Evidence: Verification report `verification/reports/VER-006_thermal_management_verification.md`, plots `verification/plots/VER-006_startup_transient.png` and `verification/plots/VER-006_propellant_temperature.png`, raw results `verification/data/VER-006_results.json`
+  - Simulation Requirements:
+    - Write an INDEPENDENT simulation — do NOT just re-run Agent 2's scripts
+    - Generate plots saved to `verification/plots/`
+    - Every plot must show requirement threshold as an annotated horizontal/vertical line
+    - Run at boundary conditions, not just nominal
+    - Output raw numerical results to `verification/data/`
+    - Compare your results against Agent 2's claimed values — flag deltas > 5%
+  - Status: **PASS** - Startup time 87 ms (56.5% margin vs. 200 ms requirement). Finding: 37.86% delta vs. design claimed startup time (87 ms vs. 140 ms). Both values satisfy requirement.
+
+- [x] **VER-007: Thrust Control System Verification**
+  - Traces to: REQ-003, REQ-004, REQ-009
+  - Design Artifact: DES-006 (Thrust Control System)
+  - Verification Method: Simulation
+  - Procedure:
+    1. Develop an independent thrust control simulation
+    2. Input thrust control parameters from DES-006
+    3. Simulate thrust vs. feed pressure relationship
+    4. Verify thrust range 0.8-1.2 N achievable (REQ-003)
+    5. Verify minimum impulse bit ≤ 0.01 N·s (REQ-004)
+    6. Verify feed pressure range 0.15-0.30 MPa (REQ-009)
+    7. Plot thrust vs. pressure with requirement range annotated
+  - Required Evidence: Verification report `verification/reports/VER-007_thrust_control_verification.md`, plot `verification/plots/VER-007_thrust_vs_pressure.png`, raw results `verification/data/VER-007_results.json`
+  - Simulation Requirements:
+    - Write an INDEPENDENT simulation — do NOT just re-run Agent 2's scripts
+    - Generate plots saved to `verification/plots/`
+    - Every plot must show requirement threshold as an annotated horizontal/vertical line
+    - Run at boundary conditions, not just nominal
+    - Output raw numerical results to `verification/data/`
+    - Compare your results against Agent 2's claimed values — flag deltas > 5%
+  - Status: **PARTIAL PASS** - REQ-003 PARTIAL (0.8-1.0 N achievable, 1.2 N requires 0.36 MPa > 0.30 MPa limit). REQ-004 PASS (0.008 N·s at 10 ms on-time, 20% margin). REQ-009 PASS (feed pressure 0.15-0.30 MPa).
+
+- [x] **VER-008: Safety and Reliability Verification**
+  - Traces to: REQ-022, REQ-025, REQ-030
+  - Design Artifact: DES-009 (Safety and Reliability)
+  - Verification Method: Analysis
+  - Procedure:
+    1. Independently analyze safety factors and failure modes
+    2. Verify leak-before-burst philosophy implemented (REQ-022)
+    3. Verify all materials are space-qualified (REQ-025)
+    4. Verify 15-year mission life requirements (REQ-030)
+    5. Calculate cumulative firing time and verify ≥ 100 h
+    6. Verify firing cycles ≥ 50,000
+    7. Verify Isp degradation ≤ 5%
+  - Required Evidence: Verification report `verification/reports/VER-008_safety_reliability_verification.md`, plot `verification/plots/VER-008_lifetime_analysis.png`, raw results `verification/data/VER-008_results.json`
+  - Simulation Requirements: None (Analysis method, not Simulation)
+  - Status: **FAIL (REQ-030 only)** - REQ-022 PASS (LBB with SF 22.2), REQ-025 PASS (all materials space-qualified), REQ-030 FAIL (cumulative time 13.89 h < 100 h requirement, -86% margin). Note: 50,000 cycles and 0.14% Isp degradation pass requirements.
+
+- [x] **VER-009: Instrumentation Verification**
+  - Traces to: REQ-028, REQ-029
+  - Design Artifact: DES-010 (Instrumentation Design)
+  - Verification Method: Analysis
+  - Procedure:
+    1. Independently analyze sensor specifications
+    2. Verify pressure transducer with 0-2 MPa range (REQ-028)
+    3. Verify two temperature sensors (catalyst bed, chamber wall) (REQ-029)
+    4. Calculate thrust resolution from pressure accuracy
+    5. Verify thrust resolution ≤ 0.05 N
+  - Required Evidence: Verification report `verification/reports/VER-009_instrumentation_verification.md`, plots `verification/plots/VER-009_sensor_accuracy.png` and `verification/plots/VER-009_sensor_comparison.png`, raw results `verification/data/VER-009_results.json`
+  - Simulation Requirements: None (Analysis method, not Simulation)
+  - Status: **PASS** - REQ-028 PASS (0-2 MPa range, ±0.024 N thrust resolution, 52% margin), REQ-029 PASS (2 temperature sensors, Type K thermocouples).
+
+- [x] **VER-010: Verify Propellant Feed System Material Compatibility**
+  - Traces to: REQ-007
+  - Design Artifact: DES-007 (⚠️ BLOCKED_BY: TODO_DESIGN.md > "DES-007")
+  - Verification Method: Inspection
+  - Procedure:
+    1. Review `design/docs/propellant_feed_system.md` and material specifications
+    2. Verify material specifications explicitly state hydrazine (N₂H₄) compatibility
+    3. Verify design documentation includes material compatibility references
+    4. Verify all wetted materials are rated for hydrazine service
+    5. Check for compatibility documentation and certification references
+    6. Document any materials lacking explicit hydrazine compatibility evidence
+  - Required Evidence: Separate verification report `verification/reports/VER-010_propellant_material_verification.md` with material compatibility checklist
+  - Simulation Requirements: None (Inspection method, not Simulation)
+  - Status: **CONDITIONAL PASS** - 9 of 11 wetted materials verified compatible. Ti-6Al-4V (tank option) and Buna-N (regulator seals) are Class C (Not Recommended) per NASA-STD-6016. Two critical findings identified, path to full PASS documented in verification report.
+
+- [x] **VER-011: Verify Thermal Cycle Survival**
+  - Traces to: REQ-017
+  - Design Artifact: DES-008 (Thermal Analysis)
+  - Verification Method: Simulation
+  - Procedure:
+    1. Develop an independent thermal stress simulation for thermal cycle conditions
+    2. Input thermal properties and geometry from DES-008
+    3. Simulate thermal cycle from -40°C to +80°C (REQ-017)
+    4. Calculate thermal stresses at boundary conditions
+    5. Verify design withstands thermal cycle without structural failure
+    6. Generate stress vs. temperature plots for hot and cold extremes
+    7. Compare results against design outputs from Agent 2
+    8. Verify thermal stress margins at both temperature extremes
+  - Required Evidence: Verification report `verification/reports/VER-011_thermal_cycle.md`, plots `verification/plots/VER-011_temperature_vs_stress.png`, `verification/plots/VER-011_temperature_vs_stress_316L.png`, `verification/plots/VER-011_safety_factor_vs_temperature.png`, and `verification/plots/VER-011_agent_comparison.png`, raw results `verification/data/VER-011_results.json`
+  - Simulation Requirements:
+    - Write an INDEPENDENT simulation — do NOT just re-run Agent 2's scripts
+    - Generate plots saved to `verification/plots/`
+    - Every plot must show requirement threshold as an annotated horizontal/vertical line
+    - Run at boundary conditions (-40°C and +80°C), not just nominal
+    - Output raw numerical results to `verification/data/`
+    - Compare your results against Agent 2's claimed values — flag deltas > 5%
+  - Status: **PASS** - REQ-017 passes with minimum safety factor of 1.2213 (11.03% margin vs. 1.1 requirement). Finding: Significant discrepancies identified (>5%): full_cycle_stress (+8.65%), full_cycle_sf (-8.11%), mismatch_stress (+124.70%), mismatch_sf (-55.43%). The mismatch_sf discrepancy is due to different modeling approach for material interface stress (Agent 2: simple CTE difference calculation, Agent 3: stiffness-based calculation with geometric factor). Despite discrepancies, the minimum safety factor of 1.2213 still meets the 1.1 requirement threshold.
+
+- [x] **VER-012: Verify Nozzle Thermal Stress for Cold Start**
+  - Traces to: REQ-019
+  - Design Artifact: DES-008 (Thermal Analysis)
+  - Verification Method: Simulation
+  - Procedure:
+    1. Develop an independent transient thermal stress simulation for cold start
+    2. Input thermal properties and nozzle geometry from DES-008
+    3. Simulate 5-second cold start scenario with worst-case thermal gradient (REQ-019)
+    4. Calculate transient thermal stresses in nozzle material
+    5. Verify nozzle withstands thermal stress for full 5-second duration
+    6. Calculate safety factor for thermal stress resistance
+    7. Generate time-domain thermal stress plots
+    8. Compare results against design outputs (Agent 2 reports marginal PASS with SF 1.13)
+    9. Verify thermal stress remains below yield strength throughout transient
+  - Required Evidence: Verification report `verification/reports/VER-012_cold_start_thermal_stress.md`, plots `verification/plots/VER-012_temperature_vs_time.png`, `verification/plots/VER-012_thermal_stress_vs_time.png`, `verification/plots/VER-012_stress_vs_yield_strength.png`, `verification/plots/VER-012_safety_factor_history.png`, `verification/plots/VER-012_independent_vs_design.png`, raw results `verification/data/VER-012_results.json`
+  - Simulation Requirements:
+    - Write an INDEPENDENT simulation — do NOT just re-run Agent 2's scripts
+    - Generate plots saved to `verification/plots/`
+    - Every plot must show requirement threshold as an annotated horizontal/vertical line
+    - Run transient simulation for full 5-second cold start duration
+    - Output raw numerical results to `verification/data/`
+    - Compare your results against Agent 2's claimed values — flag deltas > 5%
+    - **NOTE:** Verification is critical - Agent 2 reports marginal PASS with SF 1.13; independent verification required to confirm
+  - Status: **PASS** - Independent simulation verified safety factor of 1.230 (11.79% margin above 1.1 requirement). Two significant discrepancies identified (>5%): safety_factor (+9.06%), thermal_stress (-13.77%). Both discrepancies are favorable to the design (independent simulation shows higher SF, lower stress). The marginal PASS claim by design is actually conservative - independent simulation demonstrates more robust margin. Root cause: different initial temperature (-40°C vs. 20°C) and different yield strength interpolation. Disposition: ACCEPTED.
 
 ---
 

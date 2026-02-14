@@ -1,0 +1,79 @@
+{
+  "verification_id": "VER-012",
+  "requirement": "REQ-019",
+  "date": "2026-02-14",
+  "description": "Independent verification of nozzle thermal stress for 5-second cold start",
+  "simulation_parameters": {
+    "temperature_initial_C": -40.0,
+    "temperature_final_C": 1127.0,
+    "temperature_delta_C": 1167.0,
+    "thermal_time_constant_s": 1.6666666667,
+    "constraint_level": 0.12,
+    "simulation_duration_s": 5.0
+  },
+  "material_properties": {
+    "material": "Molybdenum",
+    "E_rt_GPa": 329.0,
+    "alpha_rt_1_K": 4.8e-06,
+    "sigma_y_rt_MPa": 560.0,
+    "poisson": 0.31
+  },
+  "independent_results": {
+    "final_temperature_C": 1068.8984912112167,
+    "final_thermal_stress_MPa": 193.68977528476904,
+    "final_yield_strength_MPa": 238.17854393078716,
+    "final_safety_factor": 1.229690847545304,
+    "peak_thermal_stress_MPa": 193.68977528476904,
+    "peak_stress_time_s": 5.0,
+    "minimum_safety_factor": 1.229690847545304,
+    "minimum_sf_time_s": 5.0
+  },
+  "design_comparison": {
+    "design_sf": 1.1275781914513885,
+    "independent_sf": 1.229690847545304,
+    "sf_delta_percent": 9.055926841089303,
+    "sf_discrepancy_flag": "True",
+    "design_max_stress_MPa": 224.60880915902055,
+    "independent_max_stress_MPa": 193.68977528476904,
+    "stress_delta_percent": -13.765726282071677,
+    "stress_discrepancy_flag": "True",
+    "constraint_level_match": true,
+    "time_constant_match": true
+  },
+  "verification_status": {
+    "result": "PASS",
+    "safety_factor": 1.229690847545304,
+    "requirement_threshold": 1.1,
+    "margin_percent": 11.790077049573092,
+    "discrepancies_found": [
+      {
+        "parameter": "safety_factor",
+        "delta_percent": 9.055926841089303,
+        "exceeds_threshold": true
+      },
+      {
+        "parameter": "thermal_stress",
+        "delta_percent": -13.765726282071677,
+        "exceeds_threshold": true
+      }
+    ],
+    "overall_pass": true
+  },
+  "assumptions": [
+    "Temperature model: Exponential approach to steady-state T(t) = T0 + (Tf-T0)*(1-exp(-t/tau))",
+    "Thermal time constant tau = 1.6667 s (for 95% steady-state at t=5s)",
+    "Constraint level = 0.12 (nozzle can expand relatively freely)",
+    "Geometric factor = 1/(1-nu) for thin-wall cylinders",
+    "Temperature-dependent material properties (linear interpolation)",
+    "Initial temperature = -40\u00b0C (cold start, worst-case)",
+    "Final temperature = 1127\u00b0C (steady-state operating)",
+    "Linear elastic behavior (no plasticity)"
+  ],
+  "plots_generated": [
+    "VER-012_temperature_vs_time.png",
+    "VER-012_thermal_stress_vs_time.png",
+    "VER-012_stress_vs_yield_strength.png",
+    "VER-012_safety_factor_history.png",
+    "VER-012_independent_vs_design.png"
+  ]
+}

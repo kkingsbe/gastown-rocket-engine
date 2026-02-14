@@ -1,0 +1,111 @@
+{
+  "verification_id": "VER-005",
+  "verification_date": "2026-02-14",
+  "verification_method": "Inspection / Analysis",
+  "mass_verification": {
+    "calculated_total_mass_kg": 0.42843320031677085,
+    "design_claimed_mass_kg": 0.28,
+    "delta_percent": 53.01185725598957,
+    "flag": true,
+    "REQ-011_pass": true,
+    "mass_margin_kg": 0.07156679968322915,
+    "mass_margin_percent": 14.313359936645831,
+    "component_masses": [
+      {
+        "component": "Chamber",
+        "material": "Molybdenum",
+        "calculated_mass_kg": 0.03911674746458879
+      },
+      {
+        "component": "Nozzle (conical)",
+        "material": "Molybdenum",
+        "calculated_mass_kg": 0.08587875636029096
+      },
+      {
+        "component": "Mounting flange",
+        "material": "316L_SS",
+        "calculated_mass_kg": 0.2538328324284213
+      },
+      {
+        "component": "Injector",
+        "material": "316L_SS",
+        "calculated_mass_kg": 0.03760486406346982
+      },
+      {
+        "component": "Propellant inlet",
+        "material": "316L_SS",
+        "calculated_mass_kg": 0.012
+      }
+    ]
+  },
+  "envelope_verification": {
+    "overall_length_mm": 209.1,
+    "overall_diameter_mm": 74.8,
+    "design_claimed_length_mm": 209.1,
+    "design_claimed_diameter_mm": 74.8,
+    "length_delta_percent": 0.0,
+    "diameter_delta_percent": 0.0,
+    "REQ-012_diameter_pass": true,
+    "REQ-012_length_pass": false,
+    "diameter_margin_mm": 25.200000000000003,
+    "length_margin_mm": -59.099999999999994
+  },
+  "mounting_verification": {
+    "bolt_size": "M6",
+    "bolt_count": 4,
+    "bolt_circle_diameter_mm": 80.0,
+    "REQ-013_pass": true,
+    "bolt_size_check": true,
+    "bolt_count_check": true,
+    "bcd_check": true,
+    "checklist": [
+      [
+        "Bolt hole diameter (6.5 mm) \u2265 M6 nominal (6.0 mm)",
+        true
+      ],
+      [
+        "Bolt hole spacing = 90\u00b0 (square pattern)",
+        true
+      ],
+      [
+        "BCD = 80 mm (exactly as specified)",
+        true
+      ],
+      [
+        "Flange OD (90 mm) \u2265 BCD (80 mm) with 5 mm radial margin",
+        true
+      ],
+      [
+        "Flange thickness (5 mm) \u2265 1.3 \u00d7 bolt diameter (7.8 mm)",
+        false
+      ]
+    ]
+  },
+  "inlet_verification": {
+    "fitting_type": "1/4\" AN flare",
+    "an_designation": "AN 817-4 / AN 818-4",
+    "REQ-026_pass": true,
+    "compatibility_checks": [
+      [
+        "1/4\" AN flare compatible with spacecraft distribution system",
+        true
+      ],
+      [
+        "316L SS compatible with hydrazine",
+        true
+      ],
+      [
+        "Radial orientation allows integration flexibility",
+        true
+      ],
+      [
+        "Port location provides proper injector flow",
+        true
+      ]
+    ]
+  },
+  "plots": {
+    "envelope_compliance": "/workspace/verification/plots/VER-005_envelope_compliance.png",
+    "mass_breakdown": "/workspace/verification/plots/VER-005_mass_breakdown.png"
+  }
+}

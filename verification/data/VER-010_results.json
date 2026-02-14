@@ -1,0 +1,276 @@
+{
+  "verification_id": "VER-010",
+  "verification_date": "2026-02-14",
+  "verification_method": "Independent Inspection",
+  "requirement_verified": "REQ-007",
+  "overall_status": "CONDITIONAL PASS",
+  "requirement_compliance": {
+    "REQ_007": {
+      "requirement": "Use hydrazine (N2H4) as propellant with compatible materials",
+      "threshold": "All wetted materials must be hydrazine-compatible",
+      "verification_result": "9 of 11 materials compatible, 2 incompatible materials listed as options",
+      "status": "CONDITIONAL PASS",
+      "path_to_full_pass": "Remove Ti-6Al-4V as tank option, Replace Buna-N with Viton for regulator seals"
+    }
+  },
+  "wetting_component_summary": {
+    "total_components": 11,
+    "pass_count": 9,
+    "fail_count": 2,
+    "pass_rate": 0.8181818181818182
+  },
+  "component_verification": {
+    "propellant_tank_primary": {
+      "component": "Propellant Tank (Primary)",
+      "material": "316L Stainless Steel (UNS S31603)",
+      "nasa_rating": "Class A (Compatible)",
+      "n2h4_compatibility": "Excellent",
+      "decomposition_product_compatibility": "Compatible with NH3, N2, H2",
+      "temperature_range_C": "-200 to +870",
+      "flight_heritage": "Space Shuttle OMS/RCS, ISS, Iridium, GPS",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "propellant_tank_alternate": {
+      "component": "Propellant Tank (Alternate)",
+      "material": "Titanium 6Al-4V (UNS R56400)",
+      "nasa_rating": "Class C (Not Recommended)",
+      "n2h4_compatibility": "Poor (hydride formation)",
+      "decomposition_product_compatibility": "Poor",
+      "failure_mode": "Titanium hydride formation causes embrittlement",
+      "flight_heritage": "Limited for wetted hydrazine service",
+      "compatible": false,
+      "status": "FAIL",
+      "issue": "Forms titanium hydrides (TiH2) leading to embrittlement"
+    },
+    "feed_lines": {
+      "component": "Feed Lines (Tubing)",
+      "material": "316L Stainless Steel (UNS S31603)",
+      "nasa_rating": "Class A (Compatible)",
+      "tube_size_mm": "4 mm ID, 6 mm OD",
+      "n2h4_compatibility": "Excellent",
+      "decomposition_product_compatibility": "Compatible",
+      "flight_heritage": "Standard spacecraft feed line material",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "an_flare_fitting": {
+      "component": "1/4\" AN Flare Fitting",
+      "material": "316L Stainless Steel",
+      "nasa_rating": "Class A (Compatible)",
+      "n2h4_compatibility": "Excellent",
+      "flight_heritage": "Standard aerospace fluid fitting",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "isolation_valve_body": {
+      "component": "Isolation Valve Body",
+      "material": "316L Stainless Steel",
+      "nasa_rating": "Class A (Compatible)",
+      "n2h4_compatibility": "Excellent",
+      "flight_heritage": "Standard hydrazine valve material",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "isolation_valve_seals": {
+      "component": "Isolation Valve Seals",
+      "material": "Viton (FKM, Fluoroelastomer)",
+      "nasa_rating": "Class A (Compatible)",
+      "temperature_range_C": "-20 to +204",
+      "n2h4_compatibility": "Excellent",
+      "decomposition_product_compatibility": "Compatible",
+      "flight_heritage": "Standard hydrazine valve seal material",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "pressure_regulator_body": {
+      "component": "Pressure Regulator Body",
+      "material": "316L Stainless Steel",
+      "nasa_rating": "Class A (Compatible)",
+      "n2h4_compatibility": "Excellent",
+      "flight_heritage": "Standard hydrazine regulator material",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "pressure_regulator_seals": {
+      "component": "Pressure Regulator Seals",
+      "material": "Buna-N (NBR, Nitrile Rubber)",
+      "nasa_rating": "Class C (Not Recommended)",
+      "temperature_range_C": "-40 to +120",
+      "n2h4_compatibility": "Poor to Moderate",
+      "decomposition_product_compatibility": "Limited compatibility with NH3",
+      "failure_mode": "Hydrazine degrades nitrile rubber causing swelling, softening, premature failure",
+      "flight_heritage": "None for wetted hydrazine service",
+      "compatible": false,
+      "status": "FAIL",
+      "issue": "Hydrazine attacks nitrile groups causing degradation"
+    },
+    "check_valve_body": {
+      "component": "Check Valve Body",
+      "material": "316L Stainless Steel",
+      "nasa_rating": "Class A (Compatible)",
+      "n2h4_compatibility": "Excellent",
+      "flight_heritage": "Standard hydrazine valve material",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "check_valve_seals": {
+      "component": "Check Valve Seals",
+      "material": "PTFE (Teflon, Polytetrafluoroethylene)",
+      "nasa_rating": "Class A (Compatible)",
+      "temperature_range_C": "-200 to +260",
+      "n2h4_compatibility": "Excellent",
+      "decomposition_product_compatibility": "Fully inert to NH3, N2, H2",
+      "flight_heritage": "Standard seal material for hydrazine systems",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "filters": {
+      "component": "Filters (Mesh)",
+      "material": "316L Stainless Steel mesh",
+      "nasa_rating": "Class A (Compatible)",
+      "mesh_size_um": "10",
+      "n2h4_compatibility": "Excellent",
+      "flight_heritage": "Standard filter material",
+      "compatible": true,
+      "status": "PASS"
+    },
+    "support_brackets": {
+      "component": "Support Brackets",
+      "material": "316L SS or Al 6061",
+      "wetted_status": "Non-wetted (structural only)",
+      "n2h4_compatibility": "Not required (non-wetted)",
+      "compatible": true,
+      "status": "N/A"
+    }
+  },
+  "discrepancies_with_design": [
+    {
+      "component": "Propellant Tank (Alternate)",
+      "design_claim": "Compatible",
+      "independent_finding": "Class C (Not recommended for prolonged hydrazine exposure)",
+      "material": "Ti-6Al-4V",
+      "status": "DISCREPANCY",
+      "severity": "CRITICAL"
+    },
+    {
+      "component": "Pressure Regulator Seals",
+      "design_claim": "Compatible",
+      "independent_finding": "Class C (Not recommended for long-term hydrazine service)",
+      "material": "Buna-N (NBR)",
+      "status": "DISCREPANCY",
+      "severity": "HIGH"
+    }
+  ],
+  "critical_findings": [
+    {
+      "finding_id": "F1",
+      "severity": "CRITICAL",
+      "component": "Propellant Tank (Alternate)",
+      "material": "Ti-6Al-4V (UNS R56400)",
+      "location": "DES-007, Section 2.3 (Line 77)",
+      "issue": "Titanium alloys form hydrides when exposed to hydrazine, causing embrittlement",
+      "evidence": [
+        "NASA Glenn Materials Database: Not recommended for prolonged hydrazine exposure",
+        "NASA-STD-6016 Class C classification",
+        "Chemical reaction: Ti + N2H4 -> TiH2 (titanium hydride)"
+      ],
+      "impact": "Structural failure risk if selected for tank material",
+      "recommendation": "Remove Ti-6Al-4V as option for wetted propellant tank applications"
+    },
+    {
+      "finding_id": "F2",
+      "severity": "HIGH",
+      "component": "Pressure Regulator Seals",
+      "material": "Buna-N (NBR, Nitrile Rubber)",
+      "location": "DES-007, Section 3.4 (Line 242)",
+      "issue": "Buna-N is not recommended for long-term hydrazine service",
+      "evidence": [
+        "NASA Glenn Materials Database: Not recommended for hydrazine service",
+        "NASA-STD-6016 Class C classification",
+        "Hydrazine attacks nitrile groups in polymer"
+      ],
+      "impact": "Premature seal failure, potential propellant leakage, reduced reliability",
+      "recommendation": "Replace Buna-N with Viton (FKM), PTFE-encapsulated seals, or Kalrez (FFKM)"
+    }
+  ],
+  "heritage_system_comparison": [
+    {
+      "system": "Space Shuttle OMS/RCS",
+      "propellant": "Hydrazine",
+      "materials": "316L SS, PTFE, Viton",
+      "heritage": "Flight-proven",
+      "match": true
+    },
+    {
+      "system": "ISS Attitude Control",
+      "propellant": "Hydrazine",
+      "materials": "316L SS, PTFE, Viton",
+      "heritage": "Flight-proven",
+      "match": true
+    },
+    {
+      "system": "Iridium Thrusters",
+      "propellant": "Hydrazine",
+      "materials": "316L SS, PTFE, Viton",
+      "heritage": "Flight-proven",
+      "match": true
+    },
+    {
+      "system": "GPS Block IIR",
+      "propellant": "Hydrazine",
+      "materials": "316L SS, PTFE, Viton",
+      "heritage": "Flight-proven",
+      "match": true
+    },
+    {
+      "system": "Aerojet MR-103",
+      "propellant": "Hydrazine",
+      "materials": "316L SS, PTFE, Viton",
+      "heritage": "Flight-proven",
+      "match": true
+    },
+    {
+      "system": "Airbus CHT-1",
+      "propellant": "Hydrazine",
+      "materials": "316L SS, PTFE, Viton",
+      "heritage": "Flight-proven",
+      "match": true
+    },
+    {
+      "system": "Moog Monarc",
+      "propellant": "Hydrazine",
+      "materials": "316L SS, PTFE, Viton",
+      "heritage": "Flight-proven",
+      "match": true
+    }
+  ],
+  "recommendations": {
+    "mandatory_corrections": [
+      "Update DES-007 to remove Ti-6Al-4V as option for wetted propellant tank applications",
+      "Update DES-007 to replace Buna-N with Viton (FKM) for pressure regulator seals",
+      "Update material compatibility tables to reflect independent verification findings"
+    ],
+    "documentation_updates": [
+      "Add explicit statement that Ti-6Al-4V is prohibited for wetted hydrazine applications",
+      "Add explicit statement that Buna-N is not recommended for hydrazine service",
+      "Update Heritage section to reference NASA-STD-6016 and NASA Glenn Database",
+      "Include material certification requirements in design documentation"
+    ],
+    "future_considerations": [
+      "All material selections for hydrazine-wetted components must be Class A or B per NASA-STD-6016",
+      "Cross-reference all materials with NASA Glenn Materials Database",
+      "Verify against heritage systems (Space Shuttle, ISS, commercial satellites)",
+      "For long-duration missions, prioritize materials with proven 15+ year heritage"
+    ]
+  },
+  "independent_sources": [
+    "NASA-STD-6016: Standard Materials and Processes Requirements for Spacecraft",
+    "NASA Glenn Research Center Materials Compatibility Database",
+    "ESA PSS-01-730: Materials and Processes for Space",
+    "Space Shuttle OMS/RCS heritage documentation",
+    "ISS Attitude Control thruster heritage data",
+    "Aerojet Rocketdyne MR-103 Data Sheet",
+    "Airbus CHT-1 Documentation"
+  ]
+}

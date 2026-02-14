@@ -1,0 +1,26 @@
+{
+  "verification_id": "VER-006",
+  "verification_date": "2026-02-14",
+  "verification_method": "Independent Simulation",
+  "startup_verification": {
+    "time_to_90_percent_s": 0.08700000000000001,
+    "time_to_90_percent_ms": 87.00000000000001,
+    "design_claimed_s": 0.14,
+    "delta_percent": 37.857142857142854,
+    "flag": true,
+    "REQ-006_pass": true,
+    "margin_ms": 113.0
+  },
+  "propellant_temperature_verification": {
+    "REQ-010_pass": true,
+    "temp_min_C": 5.0,
+    "temp_max_C": 50.0,
+    "temp_range_design_C": 45.0,
+    "margin_below_min_C": 45.0,
+    "margin_above_max_C": 30.0
+  },
+  "plots": {
+    "startup_transient": "/workspace/verification/plots/VER-006_startup_transient.png",
+    "propellant_temperature": "/workspace/verification/plots/VER-006_propellant_temperature.png"
+  }
+}

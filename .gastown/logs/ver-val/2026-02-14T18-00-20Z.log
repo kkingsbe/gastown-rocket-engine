@@ -1,0 +1,90 @@
+ │     * The user provided a specification document - this could be:          │
+
+ │         * An instruction to set up Agent 3 following this specification    │
+
+ │         * A reference document for future use                              │
+
+ │         * A task to implement this agent system false true                 │
+
+ │                                                                            │
+
+ │ Looking at the context, it seems like the user is sharing the              │
+
+ │ specification for Agent 3. The workspace already shows evidence of Agent 3 │
+
+ │  having completed work (VER-001 through VER-012 reports exist).            │
+
+ │                                                                            │
+
+ │ Given that I'm in Orchestrator mode and the user has provided this         │
+
+ │ specification, I should:                                                   │
+
+ │                                                                            │
+
+ │                                                                            │
+
+ │     * Acknowledge the specification                                        │
+
+ │     * Understand what the user wants me to do with it                      │
+
+ │     * Since the workspace appears to have a complete system with all       │
+
+ │ agents done and sprint_complete, the user might be:                        │
+
+ │         * Asking me to review this specification                           │
+
+ │         * Asking me to implement it                                        │
+
+ │         * Asking me to use it for future tasks false true                  │
+
+ │                                                                            │
+
+ │ Let me think about what action to take. The user hasn't explicitly asked   │
+
+ │ me to do something specific with this document. They've just provided it.  │
+
+ │ In such cases, I should ask for clarification about what they want me to   │
+
+ │ do with this specification.                                                │
+
+ │                                                                            │
+
+ │ I recognize the detailed specification outlines Agent 3's role as a        │
+
+ │ Verification & Validation Engineer. The specification comprehensively      │
+
+ │ defines the agent's responsibilities, verification protocols, and          │
+
+ │ interaction mechanisms within the multi-agent system. I'm prepared to      │
+
+ │ assist the user based on this documentation.                               │
+
+ └────────────────────────────────────────────────────────────────────────────┘
+
+
+
+ > I can see you've provided a comprehensive specification for Agent 3 —
+
+   Verification & Validation Engineer. The workspace shows this agent system is
+
+   already in place with verification work completed (VER-001 through VER-012).
+
+
+
+   To help you effectively, could you clarify what you'd like me to do with this
+
+   specification? Here are some possibilities:
+
+
+
+
+
+[2K[1A[2K[G
+
+ 💾 Checkpoint Saved (ecfa82813ae3ff80bf9602c70283cb59f419eeac)
+
+
+
+
+

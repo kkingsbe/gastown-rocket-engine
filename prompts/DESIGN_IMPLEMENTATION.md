@@ -376,6 +376,42 @@ Please advise which option to pursue, or provide alternative guidance.
 
 4. **Move to the next unblocked task.** Don't wait.
 
+## Parametric Modeling Protocol
+
+When designing physical parts, you MUST use OpenSCAD. You must strictly separate **Parameters (Data)** from **Geometry (Logic)**.
+
+**Note:** `OPENSCAD_REFERENCE.md` is a good resource for OpenSCAD, providing comprehensive documentation on language features, syntax, and best practices.
+
+### 1. File Structure
+For every physical assembly or part, create two files in `design/cad/`:
+
+1.  **`params.scad` (The Source of Truth):**
+    * Contains **ONLY** variable definitions. No geometry.
+    * This file represents the requirements in physical form.
+    * *Example:* `wall_thickness = 4.0; // derived from REQ-102 (Pressure)`
+
+2.  **`model.scad` (The Geometry):**
+    * Contains the code to generate shapes.
+    * MUST start with `include <params.scad>;`.
+    * MUST NOT contain hardcoded dimensions (use variables from `params.scad`).
+
+### 2. Workflow
+1.  **Read Requirements:** Identify constraints (e.g., "max width 50mm").
+2.  **Write `params.scad`:** Define variables that satisfy these constraints.
+3.  **Write `model.scad`:** Define the constructive solid geometry (CSG) using those variables.
+4.  **Validate & Render:**
+    * Run OpenSCAD from the command line to generate a preview PNG.
+    * Check the PNG to ensure the geometry is valid.
+
+### 3. Example OpenSCAD Artifact
+**File: `design/cad/nozzle_params.scad`**
+```scad
+// TRACE: REQ-001 (Throat Dia), REQ-005 (Expansion Ratio)
+throat_radius = 15.0; // mm
+exit_radius = 45.0;   // mm
+length = 120.0;       // mm
+wall_thk = 3.0;       // mm
+
 ### When Agent 3 reports a verification failure on your design:
 
 Agent 1 will assign corrective action back to your queue. When you see a corrective

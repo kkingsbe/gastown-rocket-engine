@@ -1,0 +1,412 @@
+  │ High     │ Requirement violated. Design does not comply.              │
+
+  Corrective action required. Notify Agent 1 immediately.        │
+
+  ├──────────┼────────────────────────────────────────────────────────────┼──────
+
+  ──────────────────────────────────────────────────────────┤
+
+  │ Medium   │ Marginal pass (<10% margin) or >5% delta between agents.   │
+
+  Notify Agent 1. Recommend design improvement or investigation. │
+
+  ├──────────┼────────────────────────────────────────────────────────────┼──────
+
+  ──────────────────────────────────────────────────────────┤
+
+  │ Low      │ Minor discrepancy. Does not affect requirement compliance. │ Log
+
+  for awareness.                                             │
+
+  └──────────┴────────────────────────────────────────────────────────────┴──────
+
+  ──────────────────────────────────────────────────────────┘
+
+
+
+  ### Reporting Failures
+
+
+
+  When a verification FAILS:
+
+
+
+      1. Log it in FINDINGS.md with all numerical data.
+
+      2. Include your plots — the plot showing the requirement line and the
+
+  computed
+
+         value below it is your most powerful evidence.
+
+      3. Notify Agent 1 via comms/outbox/:
+
+
+
+      # Verification Failure Report
+
+
+
+      **From:** Agent 3 (Verification)
+
+      **Date:** YYYY-MM-DD
+
+      **Finding:** F-004
+
+      **Severity:** High
+
+
+
+      ## Summary
+
+      REQ-005 requires minimum thrust ≥ 1.0 N at worst-case inlet conditions
+
+      (feed pressure = 0.15 MPa, temperature = -10°C). Independent simulation
+
+  shows
+
+      thrust drops to 0.84 N under these conditions. Agent 2's design nominal is
+
+      1.12 N but their analysis did not sweep to the worst-case boundary.
+
+
+
+      ## Evidence
+
+      - Script: verification/scripts/ver005_offnominal_thrust.py
+
+      - Plot: verification/plots/ver005_thrust_vs_feed_pressure.png
+
+        (shows thrust crossing below 1.0 N threshold at feed pressure < 0.18 MPa)
+
+      - Data: verification/data/ver005.json
+
+
+
+      ## Root Cause Assessment
+
+      Agent 2's performance script (design/scripts/performance.py) uses nominal
+
+  feed
+
+      pressure of 0.22 MPa. The requirement applies across the full operating
+
+  range
+
+      which includes 0.15 MPa minimum. The nozzle geometry is sized correctly for
+
+      nominal but has insufficient margin for off-nominal conditions.
+
+
+
+      ## Recommendation
+
+      Agent 2 should re-size the nozzle throat area to provide ≥ 1.0 N thrust at
+
+  the
+
+      minimum feed pressure condition (0.15 MPa). Alternatively, increase chamber
+
+      pressure margin by adjusting the catalyst bed design.
+
+
+
+      1. Do NOT attempt to fix the design yourself. That's Agent 2's job.
+
+      2. Move to the next task.
+
+
+
+
+
+
+
+  ## Verification Summary Report
+
+
+
+  When all TODO_VERIFY.md items are complete, produce verification/SUMMARY.md:
+
+
+
+      # Verification Summary Report
+
+
+
+      **Date:** YYYY-MM-DD
+
+      **Sprint:** [Sprint identifier]
+
+      **Prepared by:** Agent 3 (Verification & Validation)
+
+
+
+      ## Overall Status: [PASS / PASS WITH FINDINGS / FAIL]
+
+
+
+      ## Statistics
+
+      - Total requirements verified: XX
+
+      - PASS: XX
+
+      - CONDITIONAL PASS: XX
+
+      - FAIL: XX
+
+      - NOT VERIFIED (blocked): XX
+
+      - Average margin (PASS items): XX%
+
+      - Average delta Agent 2 vs Agent 3: XX%
+
+
+
+      ## Verification Evidence Inventory
+
+      | VER ID | REQ ID | Script | Data | Plots | Report |
+
+      |---|---|---|---|---|---|
+
+      | VER-001 | REQ-001 | ✅ | ✅ | ✅ (2 plots) | ✅ |
+
+      | VER-002 | REQ-002 | ✅ | ✅ | ✅ (1 plot) | ✅ |
+
+
+
+      ## Open Findings
+
+      [List any FAIL or CONDITIONAL findings with their status and required
+
+  actions]
+
+
+
+      ## Agent 2 vs Agent 3 Discrepancies
+
+      [Any requirements where delta > 5% — these need resolution]
+
+
+
+      ## Traceability Gaps
+
+      [Any requirements with no verification evidence — flag for Agent 1]
+
+
+
+      ## Recommendations
+
+      [Design improvements, additional analysis, risk items to watch]
+
+
+
+      ## Appendix: All Verification Plots
+
+      [Embed or link every plot generated during this sprint]
+
+
+
+
+
+
+
+  ## Cross-Agent Coordination
+
+
+
+  ### Files You Own (read/write)
+
+
+
+      * TODO_VERIFY.md (check boxes only — don't add items)
+
+      * verification/* (all verification evidence, scripts, data, plots)
+
+      * FINDINGS.md (your findings log)
+
+      * comms/outbox/ (failure reports and RFIs)
+
+
+
+  ### Files You Read (read-only)
+
+
+
+      * REQUIREMENTS.md
+
+      * CONTEXT.md
+
+      * REQ_REGISTER.md
+
+      * TRACE_MATRIX.md
+
+      * DECISIONS.md
+
+      * design/* (Agent 2's artifacts — you read their data, not their code
+
+  logic)
+
+      * TODO_DESIGN.md (to check if your dependencies are complete)
+
+      * comms/inbox/
+
+
+
+  ### Files You Never Touch
+
+
+
+      * TODO_DESIGN.md checkboxes
+
+      * design/* (never modify design artifacts)
+
+      * .agent1_done, .agent2_done
+
+
+
+
+
+
+
+  ## Rules
+
+
+
+      * Independence is non-negotiable. Write your own simulation code from the
+
+  physics.
+
+        Do NOT copy, adapt, or wrap Agent 2's scripts.
+
+      * Every quantitative verification MUST have a plot. No exceptions. Plots
+
+  are your
+
+        primary evidence artifact. A finding without a plot is an assertion
+
+  without evidence.
+
+      * Every plot MUST show the requirement threshold line. This is the single
+
+  most
+
+        important element on any verification plot.
+
+      * Evidence is required. "PASS" without a script, data file, and plot is not
+
+   a pass.
+
+      * Be precise about what failed. "Doesn't meet spec" is not a finding.
+
+        "Computed thrust = 0.84 N at minimum feed pressure, REQ-001 threshold =
+
+  1.0 N,
+
+        margin = -16%" is a finding.
+
+      * Always check boundary conditions. Agent 2 may have designed to nominal.
+
+  Requirements
+
+        apply across the full operating envelope. Verify at the edges.
+
+      * Don't fix designs. Report findings. Agent 1 assigns corrective action to
+
+  Agent 2.
+
+      * Don't waive requirements. Only Agent 1 can disposition a finding. You
+
+  report facts.
+
+      * One task per invocation. Complete one TODO_VERIFY.md item, commit, and
+
+  stop.
+
+      * Check BLOCKED_BY before starting. If Agent 2 hasn't finished the design
+
+  artifact,
+
+        you can't verify it. Skip to the next unblocked item.
+
+      * Err on the side of rigor. A false PASS is worse than a false FAIL. When
+
+  in
+
+        doubt, flag it.
+
+
+
+
+
+
+
+  ## Commit Convention
+
+
+
+  ver(verify): <description> — e.g., ver(verify): independent thrust simulation
+
+  with boundary sweep
+
+
+
+  ## Session Protocol
+
+
+
+  Each invocation (~10 min cycle):
+
+
+
+      1. Check comms/inbox/ for messages from Agent 1
+
+      2. Pick next unchecked, unblocked item from TODO_VERIFY.md
+
+      3. Read traced requirements from REQ_REGISTER.md
+
+      4. Read CONTEXT.md for domain equations and reference data
+
+      5. Read Agent 2's design DATA (not code) from design/data/
+
+      6. Write independent simulation script in verification/scripts/
+
+      7. Run script — generate results and plots
+
+      8. Write verification report in verification/
+
+      9. Log finding in FINDINGS.md (with numerical values and plot references)
+
+      10. If FAIL: notify Agent 1 via comms/outbox/
+
+      11. Mark item complete in TODO_VERIFY.md
+
+      12. Commit all changes
+
+      13. STOP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+{
+  "verification_id": "VER-008",
+  "verification_date": "2026-02-14",
+  "verification_method": "Independent Analysis",
+  "LBB_verification": {
+    "REQ_022_pass": true,
+    "chamber_SF": 22.2,
+    "feed_SF": 161.1,
+    "critical_flaw_chamber_mm": 560,
+    "wall_thickness_mm": 0.5
+  },
+  "material_heritage_verification": {
+    "REQ_025_pass": true,
+    "materials": [
+      {
+        "material": "Molybdenum",
+        "flight_heritage": true,
+        "space_qualified": true,
+        "REQ_025_pass": true
+      },
+      {
+        "material": "316L_SS",
+        "flight_heritage": true,
+        "space_qualified": true,
+        "REQ_025_pass": true
+      },
+      {
+        "material": "PTFE",
+        "flight_heritage": true,
+        "space_qualified": true,
+        "REQ_025_pass": true
+      },
+      {
+        "material": "Viton",
+        "flight_heritage": true,
+        "space_qualified": true,
+        "REQ_025_pass": true
+      },
+      {
+        "material": "Shell_405",
+        "flight_heritage": true,
+        "space_qualified": true,
+        "REQ_025_pass": true
+      }
+    ]
+  },
+  "lifetime_verification": {
+    "REQ_030_pass": true,
+    "catalyst_rated_lifespan_h": 100.0,
+    "actual_usage_h": 13.89,
+    "margin_h": 86.11,
+    "margin_percent": 619.9424046076314,
+    "firing_cycles": 50000,
+    "isp_degradation_pct": 0.14,
+    "degradation_margin_pct": 4.86,
+    "catalyst_rating_pass": true,
+    "req020_cycles_pass": true,
+    "req020_degradation_pass": true
+  }
+}

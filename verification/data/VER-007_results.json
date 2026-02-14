@@ -1,0 +1,77 @@
+{
+  "verification_id": "VER-007",
+  "verification_date": "2026-02-14",
+  "verification_method": "Independent Simulation",
+  "feed_pressure_verification": {
+    "REQ-009_pass": true,
+    "feed_pressure_min_MPa": 0.15,
+    "feed_pressure_max_MPa": 0.3,
+    "thrust_results": [
+      {
+        "feed_pressure_MPa": 0.15,
+        "pressure_ratio": 0.5,
+        "expected_thrust_N": 0.5
+      },
+      {
+        "feed_pressure_MPa": 0.2,
+        "pressure_ratio": 0.6666666666666667,
+        "expected_thrust_N": 0.6666666666666667
+      },
+      {
+        "feed_pressure_MPa": 0.24,
+        "pressure_ratio": 0.8,
+        "expected_thrust_N": 0.8
+      },
+      {
+        "feed_pressure_MPa": 0.27,
+        "pressure_ratio": 0.9000000000000001,
+        "expected_thrust_N": 0.9000000000000001
+      },
+      {
+        "feed_pressure_MPa": 0.3,
+        "pressure_ratio": 1.0,
+        "expected_thrust_N": 1.0
+      },
+      {
+        "feed_pressure_MPa": 0.3,
+        "pressure_ratio": 1.0,
+        "expected_thrust_N": 1.0
+      }
+    ],
+    "design_thrust_range": "0.8-1.0 N",
+    "design_decision": "Limited by feed pressure constraint (DEC-013)"
+  },
+  "thrust_range_verification": {
+    "REQ-003_status": "PARTIAL",
+    "required_thrust_range": "0.8-1.2 N",
+    "achievable_thrust_range": "0.8-1.0 N",
+    "upper_bound_achievable": false,
+    "feed_pressure_for_max": 0.36
+  },
+  "impulse_bit_verification": {
+    "REQ-004_pass": true,
+    "min_on_time_s": 0.01,
+    "min_impulse_bit_Ns": 0.008,
+    "impulse_results": [
+      {
+        "thrust_N": 0.8,
+        "on_time_s": 0.01,
+        "impulse_bit_Ns": 0.008,
+        "REQ-004_pass": true
+      },
+      {
+        "thrust_N": 0.9,
+        "on_time_s": 0.01,
+        "impulse_bit_Ns": 0.009000000000000001,
+        "REQ-004_pass": true
+      },
+      {
+        "thrust_N": 1.0,
+        "on_time_s": 0.01,
+        "impulse_bit_Ns": 0.01,
+        "REQ-004_pass": true
+      }
+    ]
+  },
+  "plot_file": "/workspace/verification/plots/VER-007_thrust_vs_pressure.png"
+}

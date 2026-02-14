@@ -1,0 +1,198 @@
+{
+  "baseline": {
+    "expansion_ratio": 100.0,
+    "overall_length_mm": 209.12083018276843,
+    "thrust_N": 1.0,
+    "specific_impulse_s": 410.08,
+    "nozzle_length_mm": 125.6,
+    "exit_diameter_mm": 74.8,
+    "chamber_pressure_MPa": 0.21
+  },
+  "options": [
+    {
+      "name": "Option A: Bell Nozzle Redesign",
+      "description": "Replace conical nozzle with Rao-optimized bell nozzle (15\u00b0 initial, 8\u00b0 final)",
+      "expansion_ratio": 100.0,
+      "nozzle_type": "Bell",
+      "overall_length_mm": 184.0,
+      "thrust_N": 1.0,
+      "specific_impulse_s": 410.08,
+      "chamber_pressure_MPa": 0.21,
+      "diameter_mm": 74.8,
+      "pros": [
+        "Maintains 100:1 expansion ratio and 410 s Isp",
+        "~20% length reduction (125.6 \u2192 100 mm)",
+        "Proven heritage in spacecraft thrusters",
+        "Minimal performance impact",
+        "Higher nozzle efficiency (lower divergence losses)"
+      ],
+      "cons": [
+        "Still exceeds 150 mm requirement (184 mm)",
+        "Higher manufacturing complexity",
+        "More difficult to fabricate than conical",
+        "Additional tooling costs"
+      ],
+      "length_reduction_mm": 25.1,
+      "isp_reduction_percent": 0.0,
+      "thrust_reduction_percent": 0.0,
+      "meets_length_req": false,
+      "meets_thrust_req": true,
+      "meets_isp_req": true
+    },
+    {
+      "name": "Option B1: Reduced Expansion Ratio (60:1, conical)",
+      "description": "Reduce expansion ratio from 100:1 to 60:1 with conical nozzle, increase chamber pressure to maintain thrust",
+      "expansion_ratio": 60.0,
+      "nozzle_type": "Conical",
+      "overall_length_mm": 177.7,
+      "thrust_N": 1.0,
+      "specific_impulse_s": 344.05,
+      "chamber_pressure_MPa": 0.25,
+      "diameter_mm": 57.9,
+      "pros": [
+        "Maintains 1.0 N thrust requirement",
+        "Significant length reduction",
+        "Simple conical nozzle (easy to manufacture)",
+        "Isp = 344 s (56% margin above 220 s requirement)"
+      ],
+      "cons": [
+        "Still exceeds 150 mm (178 mm)",
+        "Requires chamber pressure exceeding feed limit (0.25 MPa > 0.21 MPa max)",
+        "Isp reduced from 410 s to 344 s (16% reduction)",
+        "Not feasible with current feed system pressure"
+      ],
+      "length_reduction_mm": 31.5,
+      "isp_reduction_percent": 16.1,
+      "thrust_reduction_percent": 0.0,
+      "meets_length_req": false,
+      "meets_thrust_req": true,
+      "meets_isp_req": false
+    },
+    {
+      "name": "Option B2: Reduced Expansion Ratio (80:1, conical)",
+      "description": "Reduce expansion ratio from 100:1 to 80:1 with conical nozzle, increase chamber pressure to maintain thrust",
+      "expansion_ratio": 80.0,
+      "nozzle_type": "Conical",
+      "overall_length_mm": 194.4,
+      "thrust_N": 1.0,
+      "specific_impulse_s": 378.45,
+      "chamber_pressure_MPa": 0.228,
+      "diameter_mm": 66.9,
+      "pros": [
+        "Maintains 1.0 N thrust requirement",
+        "Balanced approach - moderate performance reduction",
+        "Isp = 378 s (72% margin)",
+        "Simple conical nozzle"
+      ],
+      "cons": [
+        "Still exceeds 150 mm (194 mm, longer than 100:1!)",
+        "Requires chamber pressure exceeding feed limit (0.228 MPa > 0.21 MPa max)",
+        "Isp reduced from 410 s to 378 s (8% reduction)",
+        "Not feasible with current feed system pressure"
+      ],
+      "length_reduction_mm": 14.7,
+      "isp_reduction_percent": 7.7,
+      "thrust_reduction_percent": 0.0,
+      "meets_length_req": false,
+      "meets_thrust_req": true,
+      "meets_isp_req": false
+    },
+    {
+      "name": "Option B3: Reduced Expansion Ratio (60:1, bell)",
+      "description": "Reduce expansion ratio to 60:1 AND use bell nozzle, increase chamber pressure to maintain thrust",
+      "expansion_ratio": 60.0,
+      "nozzle_type": "Bell",
+      "overall_length_mm": 158.8,
+      "thrust_N": 1.0,
+      "specific_impulse_s": 344.05,
+      "chamber_pressure_MPa": 0.25,
+      "diameter_mm": 57.9,
+      "pros": [
+        "Maintains 1.0 N thrust requirement",
+        "Length = 159 mm (close to 150 mm requirement)",
+        "Isp = 344 s (56% margin)",
+        "Reduced divergence losses from bell nozzle"
+      ],
+      "cons": [
+        "Still exceeds 150 mm (159 mm, 8.8 mm overage)",
+        "Requires chamber pressure exceeding feed limit (0.25 MPa > 0.21 MPa max)",
+        "Isp reduced from 410 s to 344 s (16% reduction)",
+        "Higher manufacturing complexity (bell nozzle)",
+        "Not feasible with current feed system pressure"
+      ],
+      "length_reduction_mm": 50.3,
+      "isp_reduction_percent": 16.1,
+      "thrust_reduction_percent": 0.0,
+      "meets_length_req": false,
+      "meets_thrust_req": true,
+      "meets_isp_req": false
+    },
+    {
+      "name": "Option B4: Reduced Expansion Ratio (50:1, bell)",
+      "description": "Reduce expansion ratio to 50:1 with bell nozzle for margin, increase chamber pressure to maintain thrust",
+      "expansion_ratio": 50.0,
+      "nozzle_type": "Bell",
+      "overall_length_mm": 151.3,
+      "thrust_N": 1.0,
+      "specific_impulse_s": 324.39,
+      "chamber_pressure_MPa": 0.265,
+      "diameter_mm": 52.9,
+      "pros": [
+        "Maintains 1.0 N thrust requirement",
+        "Length = 151 mm (1.3 mm over 150 mm requirement)",
+        "Isp = 324 s (47% margin)",
+        "Significant manufacturing tolerance allowance"
+      ],
+      "cons": [
+        "Still exceeds 150 mm (151 mm)",
+        "Requires chamber pressure exceeding feed limit (0.265 MPa > 0.21 MPa max)",
+        "Largest Isp reduction (21% to 324 s)",
+        "Higher propellant consumption",
+        "Not feasible with current feed system pressure"
+      ],
+      "length_reduction_mm": 57.8,
+      "isp_reduction_percent": 20.9,
+      "thrust_reduction_percent": 0.0,
+      "meets_length_req": false,
+      "meets_thrust_req": true,
+      "meets_isp_req": false
+    },
+    {
+      "name": "Option C: Requirement Relaxation",
+      "description": "Relax REQ-012 length limit from 150 mm to 210 mm",
+      "expansion_ratio": 100.0,
+      "nozzle_type": "Conical (baseline)",
+      "overall_length_mm": 209.1,
+      "thrust_N": 1.0,
+      "specific_impulse_s": 410.08,
+      "chamber_pressure_MPa": 0.21,
+      "diameter_mm": 74.8,
+      "pros": [
+        "Maintains full performance (410 s Isp)",
+        "No design changes required",
+        "Maximizes mission life with highest Isp",
+        "Simplest implementation path"
+      ],
+      "cons": [
+        "Requires requirements owner approval (Agent 1)",
+        "Longer thruster affects spacecraft integration",
+        "Potential impact on spacecraft layout",
+        "Vehicle integration constraints must be verified"
+      ],
+      "length_reduction_mm": 0.0,
+      "isp_reduction_percent": 0.0,
+      "thrust_reduction_percent": 0.0,
+      "meets_length_req": true,
+      "meets_thrust_req": true,
+      "meets_isp_req": true
+    }
+  ],
+  "summary": {
+    "baseline_length_mm": 209.12083018276843,
+    "baseline_thrust_N": 1.0,
+    "baseline_isp_s": 410.08,
+    "requirement_length_mm": 150.0,
+    "requirement_thrust_N": 1.0,
+    "requirement_isp_s": 220.0
+  }
+}

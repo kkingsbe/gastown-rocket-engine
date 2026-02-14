@@ -1,0 +1,114 @@
+{
+  "design_id": "DES-007",
+  "design_title": "Propellant Feed System Design",
+  "date": "2026-02-14",
+  "traced_requirements": [
+    "REQ-007",
+    "REQ-009",
+    "REQ-010",
+    "REQ-025"
+  ],
+  "physical_constants": {
+    "rho_N2H4_kg_m3": 1004.0,
+    "cp_N2H4_J_kgK": 3200.0,
+    "T_freeze_N2H4_C": 1.4,
+    "T_boil_N2H4_C": 113.5,
+    "k_MLI_W_mK": 0.001,
+    "k_316L_W_mK": 16.3,
+    "mdot_kg_s": 0.000244
+  },
+  "design_parameters": {
+    "propellant_mass_kg": 13.68,
+    "feed_line_inner_diameter_mm": 4.0,
+    "feed_line_outer_diameter_mm": 6.0,
+    "feed_line_length_m": 2.0,
+    "feed_pressure_min_MPa": 0.15,
+    "feed_pressure_max_MPa": 0.3
+  },
+  "thermal_analysis": {
+    "cold_sook": {
+      "scenario": "cold_sook",
+      "spacecraft_temperature_C": -40.0,
+      "initial_temperature_C": 20.0,
+      "soak_duration_hours": 8.0,
+      "heat_leak_rate_W": 0.5,
+      "temperature_drop_C": 0.32894736842105265,
+      "final_temperature_C": 19.67105263157895,
+      "requirement_min_C": 5.0,
+      "margin_C": 14.671052631578949,
+      "status": "PASS"
+    },
+    "hot_sook": {
+      "scenario": "hot_sook",
+      "spacecraft_temperature_C": 80.0,
+      "initial_temperature_C": 20.0,
+      "soak_duration_hours": 12.0,
+      "heat_leak_rate_W": 0.5,
+      "temperature_rise_C": 0.4934210526315789,
+      "final_temperature_C": 20.49342105263158,
+      "requirement_max_C": 50.0,
+      "margin_C": 29.50657894736842,
+      "status": "PASS"
+    },
+    "operational_heating": {
+      "scenario": "operational_heating",
+      "chamber_temperature_C": 1127.0,
+      "tank_temperature_C": 20.0,
+      "feed_line_length_m": 2.0,
+      "feed_line_thermal_conductivity_W_mK": 16.3,
+      "feed_line_annulus_area_m2": 1.5707963267948967e-05,
+      "heat_conduction_W": 0.141718030001599,
+      "temperature_rise_C": 0.18150362448975282,
+      "final_temperature_C": 20.181503624489753,
+      "requirement_min_C": 5.0,
+      "requirement_max_C": 50.0,
+      "margin_min_C": 15.181503624489753,
+      "margin_max_C": 29.818496375510247,
+      "status": "PASS"
+    }
+  },
+  "pressure_drop_analysis": {
+    "scenario": "pressure_drop",
+    "feed_line_inner_diameter_mm": 4.0,
+    "feed_line_outer_diameter_mm": 6.0,
+    "mass_flow_rate_kg_s": 0.000244,
+    "volumetric_flow_rate_m3_s": 2.4302788844621514e-07,
+    "flow_velocity_m_s": 0.019339544877700433,
+    "reynolds_number": 80.06970332870613,
+    "flow_regime": "laminar",
+    "friction_factor": 0.7993035735035013,
+    "pressure_drop_1m_Pa": 37.51871706273884,
+    "pressure_drop_1m_MPa": 3.751871706273884e-05,
+    "pressure_drop_5m_Pa": 187.5935853136942,
+    "pressure_drop_5m_MPa": 0.00018759358531369422,
+    "pressure_range_MPa": 0.15,
+    "percentage_drop_1m_percent": 0.025012478041825895,
+    "percentage_drop_5m_percent": 0.1250623902091295,
+    "status_1m": "PASS",
+    "status_5m": "PASS"
+  },
+  "requirements_compliance": {
+    "REQ-007": {
+      "status": "PASS",
+      "description": "Use hydrazine (N2H4) as propellant",
+      "margin": "N/A (material compatibility verified)"
+    },
+    "REQ-009": {
+      "status": "PASS",
+      "description": "Feed pressure range 0.15-0.30 MPa",
+      "margin": "Pressure drop negligible (< 1%)"
+    },
+    "REQ-010": {
+      "status": "PASS",
+      "description": "Propellant temperature 5-50\u00b0C",
+      "margin_min_C": 14.671052631578949,
+      "margin_max_C": 29.50657894736842
+    },
+    "REQ-025": {
+      "status": "PASS",
+      "description": "Materials must be space-qualified",
+      "margin": "N/A (heritage verified)"
+    }
+  },
+  "overall_compliance": true
+}
