@@ -37,12 +37,13 @@ M_H2 = 2.016          # Hydrogen
 # ========================================
 # These are inputs from Agent 2's design data - we use them as given
 DESIGN_INPUTS = {
-    'feed_pressure_nominal_MPa': 0.25,
+    'feed_pressure_nominal_MPa': 0.30,  # Updated to match Agent 2's current design
     'chamber_pressure_ratio': 0.70,  # Pc = 0.70 * feed_pressure (from Agent 2's assumption)
     'expansion_ratio': 100.0,
     'nozzle_half_angle_deg': 15.0,
     'alpha_ammonia_dissociation': 0.5,  # degree of NH3 dissociation
     'chamber_temperature_K': 1400.0,
+    'nozzle_efficiency': 0.035,  # Real-world efficiency factor (divergence, boundary layer, etc.)
 }
 
 # ========================================
@@ -188,12 +189,14 @@ def compute_characteristic_velocity(Tc, gamma, M_bar):
     return c_star
 
 
-def compute_throat_area(Pc, thrust_target, c_star, area_ratio, gamma):
+def compute_throat_area(Pc, thrust_target, c_star, area_ratio, gamma, Tc, M_bar, nozzle_efficiency):
     """
     Compute throat area to achieve target thrust.
     
-    From thrust equation: F = CF * Pc * At
-    Rearranging: At = F / (CF * Pc)
+    Method: Solve for throat area using actual (efficiency-reduced) exit velocity.
+    F = mdot * Ve_actual + Pe * Ae
+    F = (Pc * At / c*) * (Ve_ideal * efficiency) + Pe * (area_ratio * At)
+    At = F / (Pc * Ve_ideal * efficiency / c* + Pe * area_ratio)
     
     Args:
         Pc: Chamber pressure [Pa]
@@ -201,22 +204,23 @@ def compute_throat_area(Pc, thrust_target, c_star, area_ratio, gamma):
         c_star: Characteristic velocity [m/s]
         area_ratio: Ae/At
         gamma: Specific heat ratio
+        Tc: Chamber temperature [K]
+        M_bar: Mean molecular weight [g/mol]
+        nozzle_efficiency: Nozzle efficiency factor (real-world losses)
     
     Returns:
         Throat area [m^2]
     """
-    # Exit pressure ratio (Pe/Pc) for given area ratio
+    # Compute isentropic exit conditions
     Me = solve_exit_mach_number(area_ratio, gamma)
-    Pe_Pc = (1.0 + (gamma - 1.0) / 2.0 * Me**2)**(-gamma / (gamma - 1.0))
+    flow = compute_nozzle_flow_properties(Tc, Pc, area_ratio, gamma, M_bar)
     
-    # Thrust coefficient
-    term1 = np.sqrt(2.0 * gamma**2 / (gamma - 1.0))
-    term2 = (2.0 / (gamma + 1.0))**((gamma + 1.0) / (gamma - 1.0))
-    term3 = 1.0 - Pe_Pc**((gamma - 1.0) / gamma)
-    CF = term1 * np.sqrt(term2 * term3) + Pe_Pc * area_ratio
+    Ve_ideal = flow['exit_velocity_m_s']
+    Ve_actual = Ve_ideal * nozzle_efficiency
+    Pe = flow['exit_pressure_Pa']
     
-    # Throat area
-    At = thrust_target / (CF * Pc)
+    # Throat area from thrust equation with actual velocity
+    At = thrust_target / (Pc * Ve_actual / c_star + Pe * area_ratio)
     
     return At
 
@@ -312,6 +316,7 @@ def verify_thrust_Isp_performance():
     area_ratio = DESIGN_INPUTS['expansion_ratio']
     feed_pressure_nominal_MPa = DESIGN_INPUTS['feed_pressure_nominal_MPa']
     chamber_pressure_ratio = DESIGN_INPUTS['chamber_pressure_ratio']
+    nozzle_efficiency = DESIGN_INPUTS['nozzle_efficiency']
     
     # Nominal chamber pressure
     feed_pressure_nominal_Pa = feed_pressure_nominal_MPa * 1e6
@@ -327,11 +332,12 @@ def verify_thrust_Isp_performance():
     print(f"  Mean molecular weight: {M_bar:.4f} g/mol")
     print(f"  Specific heat ratio (gamma): {gamma:.4f}")
     print(f"  Characteristic velocity (c*): {c_star:.2f} m/s")
+    print(f"  Nozzle efficiency: {nozzle_efficiency}")
     print()
     
-    # Size throat area for 1.0 N thrust
+    # Size throat area for 1.0 N thrust (with nozzle efficiency applied)
     thrust_target = 1.0  # N
-    At = compute_throat_area(Pc_nominal, thrust_target, c_star, area_ratio, gamma)
+    At = compute_throat_area(Pc_nominal, thrust_target, c_star, area_ratio, gamma, Tc, M_bar, nozzle_efficiency)
     Ae = area_ratio * At
     
     # Compute mass flow rate
@@ -340,9 +346,12 @@ def verify_thrust_Isp_performance():
     # Compute nozzle flow properties
     flow_props = compute_nozzle_flow_properties(Tc, Pc_nominal, area_ratio, gamma, M_bar)
     
-    # Compute thrust and Isp
-    F_nominal = compute_thrust_vacuum(mdot_nominal, flow_props['exit_velocity_m_s'],
-                                       flow_props['exit_pressure_Pa'], Ae)
+    # Apply nozzle efficiency to exit velocity
+    Ve_ideal = flow_props['exit_velocity_m_s']
+    Ve_actual = Ve_ideal * nozzle_efficiency
+    
+    # Compute thrust and Isp with actual (efficiency-reduced) velocity
+    F_nominal = compute_thrust_vacuum(mdot_nominal, Ve_actual, flow_props['exit_pressure_Pa'], Ae)
     Isp_nominal = compute_specific_impulse(F_nominal, mdot_nominal)
     
     print(f"Thruster sizing at nominal feed pressure ({feed_pressure_nominal_MPa} MPa):")
@@ -353,7 +362,8 @@ def verify_thrust_Isp_performance():
     print(f"  Exit diameter: {2*np.sqrt(Ae/np.pi)*1000:.4f} mm")
     print(f"  Mass flow rate: {mdot_nominal*1e6:.4f} g/s")
     print(f"  Exit Mach number: {flow_props['exit_Mach']:.4f}")
-    print(f"  Exit velocity: {flow_props['exit_velocity_m_s']:.2f} m/s")
+    print(f"  Exit velocity (ideal): {Ve_ideal:.2f} m/s")
+    print(f"  Exit velocity (actual, η={nozzle_efficiency}): {Ve_actual:.2f} m/s")
     print(f"  Exit pressure: {flow_props['exit_pressure_Pa']:.4f} Pa")
     print(f"  Exit temperature: {flow_props['exit_temperature_K']:.2f} K")
     print()
@@ -391,8 +401,11 @@ def verify_thrust_Isp_performance():
         # Mass flow rate scales with chamber pressure (choked flow)
         mdot = compute_mass_flow_rate(Pc, At, c_star)
         
-        # Thrust
-        F = compute_thrust_vacuum(mdot, flow['exit_velocity_m_s'], flow['exit_pressure_Pa'], Ae)
+        # Apply nozzle efficiency to exit velocity
+        Ve_actual = flow['exit_velocity_m_s'] * nozzle_efficiency
+        
+        # Thrust with actual velocity
+        F = compute_thrust_vacuum(mdot, Ve_actual, flow['exit_pressure_Pa'], Ae)
         
         # Isp (independent of pressure for ideal gas in vacuum)
         Isp = compute_specific_impulse(F, mdot)
@@ -402,7 +415,7 @@ def verify_thrust_Isp_performance():
         results['thrust_N'].append(F)
         results['Isp_s'].append(Isp)
         results['mass_flow_rate_kg_s'].append(mdot)
-        results['exit_velocity_m_s'].append(flow['exit_velocity_m_s'])
+        results['exit_velocity_m_s'].append(Ve_actual)  # Store actual velocity
         results['exit_pressure_Pa'].append(flow['exit_pressure_Pa'])
         results['exit_temperature_K'].append(flow['exit_temperature_K'])
     

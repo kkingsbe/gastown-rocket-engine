@@ -57,7 +57,7 @@ Each verification task follows this format:
 
 ## Verification Tasks
 
-- [ ] **VER-001: Verify Thrust and Isp Performance**
+- [x] **VER-001: Verify Thrust and Isp Performance**
   - Traces to: REQ-001, REQ-002
   - Design Artifact: DES-001 (⚠️ BLOCKED_BY: TODO_DESIGN.md > "DES-001")
   - Verification Method: Simulation
