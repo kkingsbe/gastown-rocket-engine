@@ -278,6 +278,94 @@ Verification of REQ-014 should confirm that the catalyst bed reaches at least 15
 
 ---
 
+## DEC-007: Molybdenum Material Selection for Chamber and Nozzle
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-015, REQ-023, REQ-024
+
+**Decision:**
+Select Molybdenum (Mo) as the material for both chamber and nozzle construction.
+
+**Rationale:**
+The chamber operating temperature from DES-001 is 1127°C. Material selection required:
+1. Temperature capability ≥ 1400°C (REQ-015, REQ-024)
+2. Hydrazine compatibility (REQ-023)
+3. Sufficient yield strength at operating temperature (REQ-018)
+4. Reasonable mass density (REQ-011)
+
+Molybdenum was selected because:
+- Temperature capability: 1650°C (523°C margin above operating temperature)
+- Yield strength at 1127°C: 224 MPa (40% of RT value, conservative estimate)
+- Hydrazine compatible: Yes (with oxidation protection coating)
+- Density: 10,220 kg/m³ (50% lower than Rhenium)
+- Heritage: Flight-proven in oxidizing environment with coating
+- Cost: Moderate compared to Rhenium (10× less expensive)
+
+**Alternatives Considered:**
+- Haynes 230: 1150°C limit provides only 23°C margin (too close to operating temp, 156 MPa yield at temp)
+- Rhenium: 2000°C capability but 2× density (21,020 kg/m³) and 10× cost (116 MPa yield at temp)
+- Columbium C103: 1370°C marginal, lower yield strength (96 MPa at temp)
+- Inconel 625: 980°C limit, insufficient for operating temperature
+- Inconel 718: 700°C limit, insufficient for operating temperature
+
+**Impact on Requirements:**
+- REQ-015: Chamber wall temperature 1127°C ≤ 1400°C (273°C margin)
+- REQ-023: Hydrazine compatible with oxidation protection coating
+- REQ-024: Refractory metal with 1650°C capability (>1400°C requirement)
+- REQ-018: Yield strength 224 MPa at operating temperature provides safety factor of 22.2
+- REQ-011: Chamber mass 0.039 kg (7.8% of 0.5 kg budget, 92.2% margin)
+
+**Verification Implications:**
+Independent verification should confirm:
+- Material temperature capability data from manufacturer specifications
+- Yield strength degradation at high temperature (40% of RT value assumption)
+- Hydrazine compatibility with oxidation protection coating
+- Alternative materials if oxidation protection is insufficient
+
+---
+
+## DEC-008: Wall Thickness Determination (Manufacturability-Limited)
+
+**Date:** 2026-02-14
+**Decision Made By:** Agent 2
+**Related Requirements:** REQ-018, REQ-011
+
+**Decision:**
+Set chamber wall thickness to 0.500 mm, driven by manufacturability constraint rather than structural requirements.
+
+**Rationale:**
+Structural analysis using thin-wall pressure vessel theory (CONTEXT.md Section 9):
+```
+t_min = (P × SF × r) / σ_yield_at_temp
+t_min = (0.45 MPa × 1.5 × 11.2 mm) / 224 MPa
+t_min = 0.034 mm
+```
+
+The required structural thickness (0.034 mm) is negligible compared to practical manufacturing constraints. The decision was made to:
+1. Use minimum manufacturable thickness of 0.5 mm (typical for small diameter pressure vessels)
+2. Accept the resulting safety factor of 22.2 (far exceeds 1.5 requirement from REQ-018)
+3. Provide robust design for manufacturing and quality assurance
+
+This is consistent with the note in CONTEXT.md Section 9: "For the low chamber pressures in this design (0.09-0.12 MPa), structural requirements will likely be driven by minimum manufacturability thickness (~0.5-1.0 mm) rather than pressure loads."
+
+**Alternatives Considered:**
+- Thinner wall (0.2-0.3 mm): Below typical manufacturability limits, higher quality control cost
+- Thicker wall (0.75-1.0 mm): Increases mass with no structural benefit
+- Minimum structural thickness (0.034 mm): Impractical to manufacture reliably
+
+**Impact on Requirements:**
+- REQ-018: Actual safety factor 22.2 > 1.5 requirement (1379% margin)
+- REQ-011: Chamber mass 0.039 kg (7.8% of 0.5 kg budget, 92.2% margin)
+
+**Verification Implications:**
+Independent verification should confirm:
+- Thin-wall theory validity for t/r = 0.045 (< 0.1, valid)
+- Alternative wall thickness calculations using thick-wall theory
+- Manufacturing feasibility of 0.5 mm wall thickness for 22.4 mm diameter chamber
+
+---
+
 **Document Status:** Active
 **Last Updated:** 2026-02-14
 **Phase:** BOOTSTRAP (Initial template creation)

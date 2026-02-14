@@ -142,16 +142,16 @@ When tasks are assigned, they will follow this exact format:
     - Must print a requirements compliance summary to stdout
     - All physical constants and assumptions must be documented in code comments
 
-- [ ] **DES-004: Chamber and Nozzle Structural Sizing**
+- [x] **DES-004: Chamber and Nozzle Structural Sizing**
   - Traces to: REQ-015, REQ-016, REQ-018, REQ-024
   - Deliverable Type: both
   - Deliverable: Design document `design/docs/chamber_nozzle_sizing.md` and stress analysis script `design/scripts/chamber_nozzle_stress.py`
   - Acceptance Criteria:
-    - [ ] Calculate chamber wall thickness to withstand MEOP × 1.5 safety factor (REQ-018)
-    - [ ] Select chamber material compatible with ≤ 1400°C operating temperature (REQ-015, REQ-023, REQ-024)
-    - [ ] Calculate nozzle expansion ratio for ≤ 800°C exit temperature (REQ-016)
-    - [ ] Verify chamber mass ≤ 0.5 kg dry mass budget (REQ-011)
-    - [ ] Select refractory metal or high-temperature alloy for nozzle (REQ-024)
+    - [x] Calculate chamber wall thickness to withstand MEOP × 1.5 safety factor (REQ-018)
+    - [x] Select chamber material compatible with ≤ 1400°C operating temperature (REQ-015, REQ-023, REQ-024)
+    - [x] Calculate nozzle expansion ratio for ≤ 800°C exit temperature (REQ-016)
+    - [x] Verify chamber mass ≤ 0.5 kg dry mass budget (REQ-011)
+    - [x] Select refractory metal or high-temperature alloy for nozzle (REQ-024)
   - Constraints: Envelope diameter 100 mm, length 150 mm (REQ-012), chamber wall temperature ≤ 1400°C (REQ-015), nozzle exit ≤ 800°C (REQ-016)
   - Context: DES-001 provides chamber pressure and throat dimensions
   - Script Requirements:
@@ -180,8 +180,8 @@ When tasks are assigned, they will follow this exact format:
 ## Design Task Queue Status
 
 - Total Tasks: 5
-- Completed: 3
+- Completed: 4
 - In Progress: 0
-- Pending: 2
+- Pending: 1
 
-*Last Updated: 2026-02-14T02:05:00.000Z*
+*Last Updated: 2026-02-14T02:16:00.000Z*

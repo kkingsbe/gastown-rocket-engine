@@ -1,0 +1,115 @@
+{
+  "design_id": "DES-004",
+  "parameters": {
+    "MEOP_MPa": 0.3,
+    "safety_factor": 1.5,
+    "design_pressure_MPa": 0.44999999999999996,
+    "chamber_operating_temp_C": 1126.85,
+    "chamber_operating_temp_K": 1400.0
+  },
+  "material_selection": {
+    "material_name": "Molybdenum (Mo)",
+    "max_temp_C": 1650.0,
+    "density_kg_m3": 10220.0,
+    "yield_strength_RTMpa": 560.0,
+    "effective_yield_op_temp_MPa": 224.0,
+    "hydrazine_compatible": true,
+    "heritage": "Needs coating in oxidizing environment"
+  },
+  "chamber_geometry": {
+    "chamber_diameter_mm": 22.429607257343076,
+    "chamber_radius_mm": 11.214803628671538,
+    "chamber_length_mm": 83.33333333333336,
+    "chamber_length_m": 0.08333333333333336,
+    "contraction_ratio": 3.0,
+    "L_star_m": 0.75
+  },
+  "wall_thickness": {
+    "required_thickness_mm": 0.033794609148898605,
+    "design_thickness_mm": 0.5,
+    "actual_safety_factor": 22.192888714750627,
+    "actual_hoop_stress_MPa": 10.093323265804383,
+    "material_yield_at_temp_MPa": 224.0,
+    "stress_margin_percent": 95.4940521134802
+  },
+  "chamber_mass": {
+    "mass_kg": 0.0391168677658663,
+    "volume_m3": 3.827482168871458e-06
+  },
+  "nozzle_properties": {
+    "exit_diameter_mm": 74.76535752447693,
+    "nozzle_length_mm": 125.56265081732998,
+    "exit_temperature_C": -13.624291605395229
+  },
+  "overall_envelope": {
+    "overall_diameter_mm": 74.76535752447693,
+    "overall_length_mm": 208.89598415066334,
+    "diameter_check": true,
+    "length_check": false
+  },
+  "requirements_compliance": {
+    "REQ-015": {
+      "description": "Chamber wall temperature \u2264 1400\u00b0C",
+      "threshold_max": 1400.0,
+      "computed": 1126.85,
+      "unit": "\u00b0C",
+      "status": "PASS",
+      "margin_C": 273.1500000000001
+    },
+    "REQ-016": {
+      "description": "Nozzle exit temperature \u2264 800\u00b0C",
+      "threshold_max": 800.0,
+      "computed": -13.624291605395229,
+      "unit": "\u00b0C",
+      "status": "PASS",
+      "margin_C": 813.6242916053952
+    },
+    "REQ-018": {
+      "description": "Chamber withstand MEOP \u00d7 1.5 safety factor",
+      "threshold_min": 1.5,
+      "computed": 22.192888714750627,
+      "unit": "dimensionless",
+      "status": "PASS",
+      "margin_percent": 1379.5259143167084
+    },
+    "REQ-023": {
+      "description": "Chamber material compatible with hydrazine products",
+      "status": "PASS"
+    },
+    "REQ-024": {
+      "description": "Nozzle material is refractory metal or high-temp alloy (\u22651400\u00b0C)",
+      "threshold_min": 1400.0,
+      "computed": 1650.0,
+      "unit": "\u00b0C",
+      "status": "PASS"
+    },
+    "REQ-011": {
+      "description": "Dry mass \u2264 0.5 kg (chamber only)",
+      "threshold_max": 0.5,
+      "computed": 0.0391168677658663,
+      "unit": "kg",
+      "status": "PASS",
+      "margin_percent": 92.17662644682673
+    },
+    "REQ-012": {
+      "description": "Envelope: 100 mm diameter \u00d7 150 mm length",
+      "diameter_threshold_max": 100.0,
+      "length_threshold_max": 150.0,
+      "diameter_computed": 74.76535752447693,
+      "length_computed": 208.89598415066334,
+      "unit": "mm",
+      "status": "FAIL"
+    }
+  },
+  "assumptions": [
+    "Chamber diameter = 3 \u00d7 throat diameter (typical contraction ratio from CONTEXT.md)",
+    "Characteristic length L* = 0.75 m (midpoint of 0.5-1.0 m range for hydrazine)",
+    "Yield strength at operating temperature = 40.0% of RT value (conservative)",
+    "Minimum manufacturable thickness = 0.5 mm (practical constraint)",
+    "Design pressure = MEOP \u00d7 safety factor = 0.3 \u00d7 1.5 = 0.44999999999999996 MPa",
+    "Thin-wall pressure vessel theory (CONTEXT.md Section 9)",
+    "End caps modeled as hemispherical (simplified for mass calculation)",
+    "Nozzle made from same material as chamber (simplification)",
+    "DES-001 provides chamber pressure (0.21 MPa), temperature (1400 K), and throat dimensions"
+  ]
+}
