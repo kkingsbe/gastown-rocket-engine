@@ -1,0 +1,27 @@
+[settings]
+image_name = "gastown-agent"
+image_tag = "latest"
+log_dir = ".gastown/logs"
+workspace_path = "C:/Users/Kyle/Documents/code/gastown-demos/rocket-engine"
+timezone = "system"
+
+[[agent]]
+name = "design-impl"
+schedule = "0 */10 * * * *"
+readonly = false
+timeout = "30m"
+prompt_file = "prompts/DESIGN_IMPLEMENTATION.md"
+
+[[agent]]
+name = "req-owner"
+schedule = "0 */7 * * * *"
+readonly = false
+timeout = "30m"
+prompt_file = "prompts/REQUIREMENTS_OWNER.md"
+
+[[agent]]
+name = "ver-val"
+schedule = "0 */7 * * * *"
+readonly = false
+timeout = "30m"
+prompt_file = "prompts/VERIFICATION_VALIDATION.md"
